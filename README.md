@@ -45,3 +45,9 @@ A cross-platform SSH and SFTP client app designed for secure remote access, file
 This app is designed to be a simple yet powerful remote management tool to help users efficiently complete SSH and SFTP tasks across platforms.
 
 ![App Screenshot](images/1.png)
+
+![App Screenshot](images/2.png)
+
+![App Screenshot](images/3.png)
+
+![App Screenshot](images/4.png)
