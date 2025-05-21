@@ -1,9 +1,9 @@
-# Project Name / 项目名称
+# SSH & SFTP Client
 
-🌐 Language / 语言切换: [English README](README.en.md) | [中文 README](README.zh.md)
+🌐 Language / 语言: [English](README.en.md) | [中文](README.zh.md)
 
----
+![App Screenshot](images/screenshot.png)
 
-NaviTerm is an SSH and SFTP client designed for macOS, iPhone, and iPad, offering a secure and efficient way to manage remote servers and transfer files. It supports core SSH features, file operations, and port forwarding, making it a practical tool for developers, system administrators, and network engineers.
+A cross-platform SSH and SFTP client app designed for secure remote access, file transfer, and network tunneling. Available on macOS, iOS (iPhone/iPad), and optimized for efficient workflows.
 
-NaviTerm是一款适用于 macOS、iPhone 和 iPad 的 SSH 与 SFTP 客户端工具，帮助您安全、高效地远程管理服务器与传输文件。支持主流 SSH 功能、端口转发及文件操作，适合开发者、系统管理员和网络工程师使用。
+一个跨平台的 SSH 和 SFTP 客户端应用，适用于安全远程访问、文件传输与端口转发，支持 macOS 与 iOS（iPhone / iPad）平台，专为高效管理而设计。
