@@ -1,4 +1,4 @@
-# SSH 与 SFTP 客户端工具
+# NaviTerm
 
 一个跨平台的 SSH 和 SFTP 客户端应用，适用于安全远程访问、文件传输与端口转发，支持 macOS 与 iOS（iPhone / iPad）平台，专为高效管理而设计。
 
