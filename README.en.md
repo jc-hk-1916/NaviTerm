@@ -1,7 +1,5 @@
 # SSH & SFTP Client
 
-![App Screenshot](images/1.png)
-
 A cross-platform SSH and SFTP client app designed for secure remote access, file transfer, and network tunneling. Available on macOS, iPhone, and iPad.
 
 ---
