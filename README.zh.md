@@ -45,3 +45,9 @@
 本应用旨在提供简洁、实用的远程管理工具，帮助用户在多平台下高效完成 SSH 与 SFTP 任务。
 
 ![App Screenshot](images/1.png)
+
+![App Screenshot](images/2.png)
+
+![App Screenshot](images/3.png)
+
+![App Screenshot](images/4.png)
