@@ -1,6 +1,6 @@
 # NaviTerm
 
-A cross-platform SSH and SFTP client app designed for secure remote access, file transfer, and network tunneling. Available on macOS, iPhone, and iPad.
+A cross-platform SSH and SFTP client designed for secure remote access, file transfer, and port forwarding. Available on macOS and iOS (iPhone / iPad), with support for 20 languages, it's built for efficient and streamlined remote management.
 
 ---
 
