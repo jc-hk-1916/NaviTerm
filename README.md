@@ -1,6 +1,6 @@
 # NaviTerm
 
-Language / 语言: [English] | [中文](README.zh.md)
+Language / 语言: English | [中文](README.zh.md)
 
 A cross-platform SSH and SFTP client designed for secure remote access, file transfer, and port forwarding. Available on macOS and iOS (iPhone / iPad), with support for 20 languages, it's built for efficient and streamlined remote management.
 
@@ -35,14 +35,6 @@ A cross-platform SSH and SFTP client designed for secure remote access, file tra
 
 ---
 
-### 🛠️ Example Use Cases
-
-- Log into VPS or cloud servers to execute system commands
-- Configure and manage Linux/Unix servers
-- Upload, download, or edit remote files
-- Set up local proxies, debug databases, or access intranet services (via port forwarding)
-
----
 
 This app is designed to be a simple yet powerful remote management tool to help users efficiently complete SSH and SFTP tasks across platforms.
 
