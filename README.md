@@ -35,12 +35,13 @@ A cross-platform SSH and SFTP client designed for secure remote access, file tra
 
 ---
 
-
-This app is designed to be a simple yet powerful remote management tool to help users efficiently complete SSH and SFTP tasks across platforms.
-
 ### 🚀 Download
 
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/naviterm/id6747072398)
+
+---
+
+This app is designed to be a simple yet powerful remote management tool to help users efficiently complete SSH and SFTP tasks across platforms.
 
 ![App Screenshot](images/1.png)
 
