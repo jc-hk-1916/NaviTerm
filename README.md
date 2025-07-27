@@ -41,6 +41,22 @@ A cross-platform SSH and SFTP client designed for secure remote access, file tra
 
 ---
 
+### 🎁 Promo Code Redemption Guide
+
+We occasionally offer free subscription promo codes (1 month or 1 year). If you have received a promo code:
+
+1. Open the App Store on your iPhone or Mac;
+2. Tap your profile icon > Redeem Gift Card or Code;
+3. Paste the promo code and confirm;
+4. Open the NaviTerm app, and the subscription will be activated automatically.
+
+📎 [Click here to view available monthly promo codes](promo-codes/monthly.txt)  
+📎 [Click here to view available yearly promo codes](promo-codes/yearly.txt)
+
+> Limited quantity, first come, first served. No registration or personal information required.
+
+---
+
 This app is designed to be a simple yet powerful remote management tool to help users efficiently complete SSH and SFTP tasks across platforms.
 
 ![App Screenshot](images/1.png)
