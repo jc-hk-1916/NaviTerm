@@ -59,6 +59,15 @@
 
 ---
 
+## 🙏 特别感谢
+
+本应用基于以下优秀的开源项目构建：
+
+- [dartssh2](https://github.com/TerminalStudio/dartssh2) - Dart SSH 客户端库
+- [xterm.dart](https://github.com/TerminalStudio/xterm.dart) - Flutter 终端模拟器
+
+---
+
 ## 🌍 全球化支持
 
 支持25+种语言，包括：英文、日文、韩文、德文、法文、西班牙文、葡萄牙文、意大利文、俄文、阿拉伯文、印地语、波斯语、泰语、越南语、印尼语、简体中文、繁体中文等

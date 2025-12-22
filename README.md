@@ -41,6 +41,15 @@ Your all-in-one SSH terminal, SFTP client, and port forwarding tool, built from 
 
 ---
 
+### 🙏 Special Thanks
+
+This app is built with the following amazing open-source projects:
+
+- [dartssh2](https://github.com/TerminalStudio/dartssh2) - SSH client library for Dart
+- [xterm.dart](https://github.com/TerminalStudio/xterm.dart) - Terminal emulator for Flutter
+
+---
+
 ### 🌍 Global Support
 
 Available in 25+ Languages: Including English, Japanese, Korean, German, French, Spanish, Portuguese, Italian, Russian, Arabic, Hindi, Persian, Thai, Vietnamese, Indonesian, Simplified Chinese, Traditional Chinese, and more.
