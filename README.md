@@ -2,36 +2,64 @@
 
 Language / 语言: English | [中文](README.zh.md)
 
-A cross-platform SSH and SFTP client designed for secure remote access, file transfer, and port forwarding. Available on macOS and iOS (iPhone / iPad), with support for 24 languages, it's built for efficient and streamlined remote management.
+Your all-in-one SSH terminal, SFTP client, and port forwarding tool, built from the ground up for macOS, iPhone, and iPad. Three powerful tools in one seamless app, perfect for system administrators, developers, DevOps engineers, and tech enthusiasts. With iCloud Sync and Background Activity, you can securely manage your servers from anywhere, anytime.
 
 ---
 
-### ✨ Key Features
+### ✨ All-New Features
 
-- **SSH Terminal Access**  
-  Securely connect to remote servers via SSH using either password or private key authentication. Supports interactive shell sessions, ideal for system maintenance and command execution.
+- **Stay Connected in the Background**
+  Keep your SSH, SFTP, and Port Forwarding sessions running in the background. Connections stay active even when you switch apps or lock your screen, ensuring long-running tasks complete without interruption. An intelligent keep-alive mechanism maintains a stable, long-term connection.
 
-- **SFTP File Management**  
-  Browse the remote server's file system with support for upload, download, rename, delete, and file preview across various formats.
-
-- **Local and Remote Port Forwarding**  
-  Configure SSH tunnels for forwarding local ports to remote hosts (Local Forwarding) or remote ports to local services (Remote Forwarding). Useful for development, database access, and accessing restricted network services.
-
-- **Key Management**  
-  Import OpenSSH-format private keys, supporting both encrypted and unencrypted types such as RSA and ED25519.
-
-- **Multi-Device Support**  
-  Seamlessly sync and operate across Mac, iPhone, and iPad with a UI optimized for each platform, enabling remote access anytime, anywhere.
-
-- **Connection Session Storage**  
-  Save frequently used server configurations for quick access. Supports grouping by tags and adding custom notes.
+- **iCloud Sync Across All Your Devices**
+  Instantly sync your host configurations across your iPhone, iPad, and Mac with iCloud. Add a server on one device, and it's instantly available on all your others. Silent push notifications ensure changes from the cloud are automatically synced to your device. Automatic conflict resolution for worry-free editing across multiple devices.
 
 ---
 
-### 🔒 Privacy & Security
+### 🛠️ Core Features
 
-- All connections are established over the SSH encryption protocol. No server or account information is collected.
-- Private keys are stored locally on your device and are never uploaded to the cloud.
+- **Powerful SSH Terminal**
+  Full support for password and private key authentication (RSA, ED25519, P256). A high-performance asynchronous engine delivers a fast and fluid experience. Manage multiple servers at once with a tabbed interface. Full terminal emulation with support for colors and special characters. Quickly find what you need with in-terminal search and highlighting.
+
+- **Intuitive SFTP File Manager**
+  A user-friendly dual-pane file browser. Easily upload, download, rename, delete files, and change permissions. View real-time transfer progress and cancel operations on the fly. Preview a wide range of file types directly in the app. Streamline your workflow with drag-and-drop file transfers.
+
+- **Advanced Port Forwarding**
+  Set up both local and remote port forwarding. Configure SSH tunnel proxies with ease. Securely access services on private networks. Perfect for testing and debugging services.
+
+- **Secure Key Management**
+  Import your OpenSSH-compatible private keys. Supports multiple key formats, including Ed25519, RSA, and P256/EC. Keys are stored securely on your device and are never uploaded. Works with both encrypted and unencrypted keys. Connect instantly with one-tap key authentication.
+
+---
+
+### 🔒 Security & Privacy
+
+- **End-to-End Encryption**: All connections are secured with the SSH protocol.
+- **On-Device Storage**: Private keys and sensitive data are stored only on your device.
+- **Zero Data Collection**: We do not collect or share any of your connection information.
+- **Built on Open Source**: Core functionalities are built on transparent, open-source technology.
+
+---
+
+### 🌍 Global Support
+
+Available in 25+ Languages: Including English, Japanese, Korean, German, French, Spanish, Portuguese, Italian, Russian, Arabic, Hindi, Persian, Thai, Vietnamese, Indonesian, Simplified Chinese, Traditional Chinese, and more.
+
+---
+
+### 💎 Subscription Model
+
+- **Free Version**: Get the full experience with support for up to 5 hosts.
+- **Pro Subscription**: Unlock unlimited hosts with flexible monthly or annual plans.
+- **Works Offline**: Pro subscribers can use the app without an internet connection.
+
+---
+
+### 🎨 Design Highlights
+
+- **Truly Native**: Designed to feel right at home on Apple platforms.
+- **Responsive Design**: Perfectly optimized for every screen size.
+- **Intuitive Gestures**: A touch-first experience designed for iPhone and iPad.
 
 ---
 
@@ -50,19 +78,23 @@ We occasionally offer free subscription promo codes (1 month or 1 year). If you 
 3. Paste the promo code and confirm;
 4. Open the NaviTerm app, and the subscription will be activated automatically.
 
-📎 [Click here to view available monthly promo codes](promo-codes/monthly.txt)  
+📎 [Click here to view available monthly promo codes](promo-codes/monthly.txt)
 📎 [Click here to view available yearly promo codes](promo-codes/yearly.txt)
 
 > Limited quantity, first come, first served. No registration or personal information required.
 
 ---
 
-This app is designed to be a simple yet powerful remote management tool to help users efficiently complete SSH and SFTP tasks across platforms.
+### 📜 Legal
+
+- [Terms of Use](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/)
+- [Privacy Policy](https://www.trivix.cn/NaviTerm_Privacy_Policy.html)
+- [Changelog](CHANGELOG.md)
+
+---
 
 ![App Screenshot](images/1.png)
 
 ![App Screenshot](images/2.png)
 
 ![App Screenshot](images/3.png)
-
-![App Screenshot](images/4.png)
