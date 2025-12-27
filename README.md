@@ -112,12 +112,12 @@ We occasionally offer free subscription promo codes (1 month or 1 year). If you 
 
 ![App Screenshot](images/5.png)
 
-![App Screenshot](images/6.png)
+![App Screenshot](images/6.jpg)
 
-![App Screenshot](images/7.png)
+![App Screenshot](images/7.jpg)
 
-![App Screenshot](images/8.png)
+![App Screenshot](images/8.jpg)
 
-![App Screenshot](images/9.png)
+![App Screenshot](images/9.jpg)
 
-![App Screenshot](images/10.png)
+![App Screenshot](images/10.jpg)
