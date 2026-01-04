@@ -1,6 +1,6 @@
 {
-  "name": "国外大型科技公司图标合集",
-  "description": "精选122个国外大型科技公司产品和公司图标",
+  "name": "NaviTerm Icon Examples",
+  "description": "Curated collection of popular company and application icons",
   "icons": [
     {"name": "Adobe", "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/examples/icon/Adobe.png"},
     {"name": "Adobe(1)", "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/examples/icon/Adobe(1).png"},
