@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:github.com)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(for file in *.png)",
+      "Bash(do echo \"    {\"\"name\"\": \"\"$file%.png\"\", \"\"url\"\": \"\"https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/$file\"\"}\")",
+      "Bash(done)",
+      "Bash(test:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []
