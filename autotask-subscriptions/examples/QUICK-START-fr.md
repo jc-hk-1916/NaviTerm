@@ -22,7 +22,7 @@ Commencez avec NaviTerm AutoTask en 5 minutes !
    - **Mise à Jour Automatique** : `0 6 * * *` (Quotidien à 6h00)
 5. Appuyez sur **Ajouter**
 
-✅ Terminé ! Vous avez maintenant 4 scripts essentiels prêts à l'emploi.
+✅ Terminé ! Vous avez maintenant 11 scripts d'exemple prêts à l'emploi.
 
 ---
 

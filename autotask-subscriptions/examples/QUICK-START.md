@@ -20,7 +20,7 @@ Get started with NaviTerm AutoTask in 5 minutes!
    - **Auto-Update**: `0 6 * * *` (Daily at 6 AM)
 5. Tap **Add**
 
-✅ Done! You now have 4 essential scripts ready to use.
+✅ Done! You now have 11 example scripts ready to use.
 
 ### Option B: SSH Monitoring Suite
 
