@@ -1,10 +1,10 @@
 /**
  * API Health Check
- * Monitors multiple API endpoints and reports their status
+ * Monitor multiple API endpoints and report their status
  *
- * Real API Examples (All URLs are working and publicly accessible):
+ * Real API examples (all URLs are accessible):
  * - JSONPlaceholder: Free fake REST API for testing
- * - httpbin.org: HTTP request & response service
+ * - httpbin.org: HTTP request and response service
  * - GitHub API: Public API
  * - Example.com: Always available test domain
  *
@@ -19,7 +19,7 @@ const ENDPOINTS = [
     // JSONPlaceholder - Free fake API for testing (https://jsonplaceholder.typicode.com)
     { name: 'JSONPlaceholder API', url: 'https://jsonplaceholder.typicode.com/posts/1' },
 
-    // httpbin.org - HTTP request & response service
+    // httpbin.org - HTTP request and response service
     { name: 'HTTPBin Status', url: 'https://httpbin.org/status/200' },
 
     // GitHub API - Public API
@@ -72,7 +72,7 @@ function checkEndpoint(endpoint, callback) {
         if (!healthy) {
             console.warn(`[API Health] ${endpoint.name} returned HTTP ${response.status}`);
         } else {
-            console.log(`[API Health] ${endpoint.name} is healthy (${Math.round(responseTime)}ms)`);
+            console.log(`[API Health] ${endpoint.name} healthy (${Math.round(responseTime)}ms)`);
         }
 
         callback({
@@ -81,7 +81,7 @@ function checkEndpoint(endpoint, callback) {
             healthy: healthy,
             status: response.status,
             responseTime: Math.round(responseTime),
-            body: body.substring(0, 200)  // First 200 chars
+            body: body.substring(0, 200)  // First 200 characters
         });
     });
 }
@@ -91,7 +91,7 @@ function finishCheck(results) {
     const healthy = results.filter(r => r.healthy);
 
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-    console.log('[API Health] Check Complete');
+    console.log('[API Health] Check complete');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
     results.forEach(r => {
@@ -110,7 +110,7 @@ function finishCheck(results) {
         console.error(`[API Health] Issues detected:\n${message}`);
         $notification.post(
             'API Health Alert',
-            `${unhealthy.length}/${ENDPOINTS.length} endpoint(s) down`,
+            `${unhealthy.length}/${ENDPOINTS.length} endpoints down`,
             ''
         );
     } else {

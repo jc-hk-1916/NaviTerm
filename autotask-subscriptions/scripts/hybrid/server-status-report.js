@@ -1,15 +1,15 @@
 /**
- * Server Status Report (Hybrid)
- * Collects server metrics via SSH and reports to monitoring API via HTTP
+ * Server Status Report (Hybrid Mode)
+ * Collect server metrics via SSH and report to monitoring API via HTTP
  *
  * This script demonstrates the power of combining SSH and HTTP:
  * 1. Collect metrics from servers via SSH
- * 2. Aggregate and format the data
+ * 2. Aggregate and format data
  * 3. Send to monitoring platform via HTTP API
  *
- * Real API Example:
- * - httpbin.org/post: HTTP POST testing endpoint (echoes back your data)
- * - You can replace this with your own monitoring platform API
+ * Real API example:
+ * - httpbin.org/post: HTTP POST test endpoint (echoes your data)
+ * - You can replace it with your own monitoring platform API
  *
  * Configuration:
  * - MONITORING_API_URL: Your monitoring platform API endpoint
@@ -41,13 +41,13 @@ console.log('[Status Report] Starting server status collection...');
 
 $ssh.getHosts((hosts) => {
     if (hosts.length === 0) {
-        console.error('[Status Report] No hosts configured');
-        $notification.post('Status Report Failed', 'No hosts configured', '');
+        console.error('[Status Report] No configured hosts found');
+        $notification.post('Status Report Failed', 'No configured hosts found', '');
         $done(JSON.stringify({ error: 'No hosts found' }));
         return;
     }
 
-    console.log(`[Status Report] Collecting metrics from ${hosts.length} host(s)...`);
+    console.log(`[Status Report] Collecting metrics from ${hosts.length} hosts...`);
 
     let metrics = [];
     let completed = 0;
@@ -130,7 +130,7 @@ function sendReport(metrics) {
         return;
     }
 
-    console.log(`[Status Report] Sending ${metrics.length} metric(s) to monitoring API...`);
+    console.log(`[Status Report] Sending ${metrics.length} metrics to monitoring API...`);
 
     const payload = {
         source: 'NaviTerm AutoTask',
@@ -158,7 +158,7 @@ function sendReport(metrics) {
             console.log(`[Status Report] Report sent successfully (HTTP ${response.status})`);
             $notification.post(
                 'Status Report Sent',
-                `${metrics.length} server(s) reported`,
+                `${metrics.length} servers reported`,
                 ''
             );
             $done(JSON.stringify({

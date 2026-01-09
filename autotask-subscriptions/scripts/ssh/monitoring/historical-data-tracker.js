@@ -10,12 +10,12 @@ const CONFIG = {
 };
 
 // ==================== Script Start ====================
-console.log('[Historical Data Tracker] Starting metrics collection...');
+console.log('[Historical Data Tracker] Starting metric collection...');
 
 // Get all hosts
 $ssh.getHosts((hosts) => {
     if (hosts.length === 0) {
-        console.error('[Historical Data Tracker] No hosts configured');
+        console.error('[Historical Data Tracker] No configured hosts found');
         $done(JSON.stringify({ error: 'No hosts configured' }));
         return;
     }
@@ -44,7 +44,7 @@ $ssh.getHosts((hosts) => {
                 history = JSON.parse(historyJson);
                 console.log(`[Historical Data Tracker] Found ${history.length} historical records`);
             } catch (e) {
-                console.warn('[Historical Data Tracker] Failed to parse history, starting fresh');
+                console.warn('[Historical Data Tracker] Failed to parse historical data, starting fresh');
                 history = [];
             }
         } else {
@@ -65,11 +65,11 @@ $ssh.getHosts((hosts) => {
         if (history.length > CONFIG.maxHistoryRecords) {
             const removed = history.length - CONFIG.maxHistoryRecords;
             history = history.slice(-CONFIG.maxHistoryRecords);
-            console.log(`[Historical Data Tracker] Trimmed ${removed} old records`);
+            console.log(`[Historical Data Tracker] Removed ${removed} old records`);
         }
 
-        // Save updated history (using $persistentStore.write API)
-        console.log('[Historical Data Tracker] Saving updated history...');
+        // Save updated historical data (using $persistentStore.write API)
+        console.log('[Historical Data Tracker] Saving updated historical data...');
         $persistentStore.write(CONFIG.storageKey, JSON.stringify(history));
 
         // Calculate statistics
@@ -86,12 +86,12 @@ $ssh.getHosts((hosts) => {
             records: history.length
         };
 
-        console.log(`[Historical Data Tracker] Statistics - Current: ${stats.current}, Avg: ${stats.average}, Max: ${stats.max}, Min: ${stats.min}`);
+        console.log(`[Historical Data Tracker] Statistics - Current: ${stats.current}, Average: ${stats.average}, Max: ${stats.max}, Min: ${stats.min}`);
 
         // Send notification
         $notification.post(
             'Metrics Tracked',
-            `${host.name} - Load: ${currentLoad} (Avg: ${stats.average}, Records: ${history.length})`,
+            `${host.name} - Load: ${currentLoad} (Average: ${stats.average}, Records: ${history.length})`,
             ''
         );
 

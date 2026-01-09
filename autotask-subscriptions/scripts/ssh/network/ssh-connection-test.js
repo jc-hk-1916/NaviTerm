@@ -9,24 +9,24 @@ const CONFIG = {
 };
 
 // ==================== Script Start ====================
-console.log('[SSH Connection Test] Starting SSH connection tests...');
+console.log('[SSH Connection Test] Starting SSH connection test...');
 
 // Get all hosts
 $ssh.getHosts((hosts) => {
     if (hosts.length === 0) {
-        console.error('[SSH Connection Test] No hosts configured');
-        $notification.post('SSH Test Failed', 'No hosts configured', '');
+        console.error('[SSH Connection Test] No configured hosts found');
+        $notification.post('SSH Test Failed', 'No configured hosts found', '');
         $done(JSON.stringify({ error: 'No hosts configured' }));
         return;
     }
 
-    console.log(`[SSH Connection Test] Found ${hosts.length} host(s) to test`);
+    console.log(`[SSH Connection Test] Found ${hosts.length} hosts to test`);
 
     let testedCount = 0;
     let successCount = 0;
     let failedHosts = [];
 
-    // Test connection for each host
+    // Test connection to each host
     hosts.forEach((host, index) => {
         console.log(`[SSH Connection Test] Testing connection to ${host.name} (${host.host}:${host.port})...`);
 
@@ -40,7 +40,7 @@ $ssh.getHosts((hosts) => {
                 // After successful connection, verify with a simple command
                 $ssh.exec(host.id, "echo 'Connection OK'", (execResult) => {
                     if (execResult.success) {
-                        console.log(`[SSH Connection Test] ✓ ${host.name}: Command execution successful`);
+                        console.log(`[SSH Connection Test] ✓ ${host.name}: Command executed successfully`);
                         successCount++;
                     } else {
                         console.error(`[SSH Connection Test] ✗ ${host.name}: Connected but command failed - ${execResult.error}`);
@@ -75,7 +75,7 @@ $ssh.getHosts((hosts) => {
     // Check if testing is complete
     function checkComplete() {
         if (testedCount === hosts.length) {
-            // All hosts tested
+            // All hosts have been tested
             const summary = `Tested: ${testedCount}, Success: ${successCount}, Failed: ${failedHosts.length}`;
             console.log(`[SSH Connection Test] Test complete - ${summary}`);
 
@@ -83,13 +83,13 @@ $ssh.getHosts((hosts) => {
                 const failedNames = failedHosts.map(h => h.name).join(', ');
                 $notification.post(
                     'SSH Connection Test',
-                    `${failedHosts.length} host(s) failed: ${failedNames}`,
+                    `${failedHosts.length} hosts failed: ${failedNames}`,
                     ''
                 );
             } else {
                 $notification.post(
                     'SSH Connection Test',
-                    `All ${successCount} host(s) connected successfully`,
+                    `All ${successCount} hosts connected successfully`,
                     ''
                 );
             }

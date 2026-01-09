@@ -1,8 +1,8 @@
 /**
  * Server Health Check
- * Monitors CPU, Memory, and Disk usage across all configured hosts
+ * Monitor CPU, memory, and disk usage for all configured hosts
  *
- * Configuration (modify as needed):
+ * Configuration options (modify as needed):
  * - CPU_THRESHOLD: CPU usage threshold (%)
  * - MEMORY_THRESHOLD: Memory usage threshold (%)
  * - DISK_THRESHOLD: Disk usage threshold (%)

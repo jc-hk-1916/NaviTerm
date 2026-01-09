@@ -1,9 +1,8 @@
 // Network Connectivity Check Script
-// 检查服务器网络连接性
 // Check server network connectivity
 
-// ==================== 配置 Configuration ====================
-// 要测试的目标主机 Hosts to test connectivity
+// ==================== Configuration ====================
+// Target hosts to test
 const TEST_HOSTS = [
     '8.8.8.8',           // Google DNS
     '1.1.1.1',           // Cloudflare DNS
@@ -11,19 +10,16 @@ const TEST_HOSTS = [
     'google.com'         // Google
 ];
 
-// ==================== 脚本开始 Script Start ====================
-console.log('[网络检查] 开始执行...');
+// ==================== Script Start ====================
 console.log('[Network Check] Starting...');
 
 $ssh.getHosts((hosts) => {
     if (hosts.length === 0) {
-        console.error('[网络检查] 未找到配置的主机');
         console.error('[Network Check] No configured hosts found');
         $done(JSON.stringify({ error: 'No hosts configured' }));
         return;
     }
 
-    console.log(`[网络检查] 找到 ${hosts.length} 个主机`);
     console.log(`[Network Check] Found ${hosts.length} hosts`);
 
     let allResults = [];
@@ -34,7 +30,7 @@ $ssh.getHosts((hosts) => {
         let testsCompleted = 0;
 
         TEST_HOSTS.forEach(testHost => {
-            // Ping测试 Ping test
+            // Ping test
             const command = `ping -c 3 -W 2 ${testHost} > /dev/null 2>&1 && echo "OK" || echo "FAIL"`;
 
             $ssh.exec(host.id, command, (result) => {
@@ -51,16 +47,16 @@ $ssh.getHosts((hosts) => {
                     const icon = isReachable ? '✓' : '✗';
                     console.log(`[${host.name}] ${icon} ${testHost}: ${status}`);
 
-                    // 如果无法连接,发送告警 Send alert if unreachable
+                    // If unreachable, send alert
                     if (!isReachable) {
                         $notification.post(
-                            '网络告警 Network Alert',
+                            'Network Alert',
                             host.name,
-                            `无法连接到: ${testHost}\nCannot reach: ${testHost}`
+                            `Cannot reach: ${testHost}`
                         );
                     }
                 } else {
-                    console.error(`[${host.name}] ${testHost}: 测试失败 Test failed`);
+                    console.error(`[${host.name}] ${testHost}: Test failed`);
                     connectivityResults.push({
                         target: testHost,
                         status: 'ERROR',
@@ -79,10 +75,9 @@ $ssh.getHosts((hosts) => {
                     hostsCompleted++;
                     if (hostsCompleted === hosts.length) {
                         console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-                        console.log('[网络检查] 检查完成');
                         console.log('[Network Check] Check complete');
 
-                        // 统计失败的连接 Count failed connections
+                        // Count failed connections
                         let totalFailed = 0;
                         allResults.forEach(hostResult => {
                             const failed = hostResult.connectivity.filter(c => !c.reachable).length;
@@ -90,7 +85,6 @@ $ssh.getHosts((hosts) => {
                         });
 
                         if (totalFailed > 0) {
-                            console.warn(`⚠️  ${totalFailed} 个连接失败`);
                             console.warn(`⚠️  ${totalFailed} connections failed`);
                         }
 

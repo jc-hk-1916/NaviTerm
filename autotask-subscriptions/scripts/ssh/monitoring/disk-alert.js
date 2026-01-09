@@ -1,8 +1,8 @@
 /**
  * Disk Space Alert
- * Monitors disk usage and sends alerts when threshold is exceeded
+ * Monitor disk usage and send alerts when threshold is exceeded
  *
- * Configuration:
+ * Configuration options:
  * - THRESHOLD: Disk usage threshold (%)
  * - MOUNT_POINT: Mount point to monitor (default: /)
  *
