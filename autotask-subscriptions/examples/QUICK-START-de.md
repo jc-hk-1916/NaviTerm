@@ -6,13 +6,13 @@ Starten Sie mit NaviTerm AutoTask in 5 Minuten!
 
 ---
 
-## Schritt 1: Fügen Sie Ihr Erstes Abonnement Hinzu
+## Schritt 1: Fügen Sie Ihr erstes Abonnement hinzu
 
 ### Option A: Vollständige Suite (Empfohlen)
 
 1. Öffnen Sie die **NaviTerm** App
 2. Navigieren Sie zu **AutoTask** → **Abonnements**
-3. Tippen Sie auf **Abonnement Hinzufügen** (+ Button)
+3. Tippen Sie auf **Abonnement hinzufügen** (+ Button)
 4. Füllen Sie das Formular aus:
    - **Name**: `Vollständige Automatisierungs-Suite`
    - **URL**:
@@ -26,7 +26,7 @@ Starten Sie mit NaviTerm AutoTask in 5 Minuten!
 
 ---
 
-## Schritt 2: Konfigurieren Sie Ihr Erstes Skript
+## Schritt 2: Konfigurieren Sie Ihr erstes Skript
 
 ### Beispiel: Server-Gesundheitsprüfung
 

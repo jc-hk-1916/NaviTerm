@@ -4,7 +4,7 @@
 
 ---
 
-**Offizielles Automatisierungsskript-Repository für NaviTerm**
+**Offizielles Automatisierungsskript-Repository von NaviTerm**
 
 Eine umfassende Sammlung von Automatisierungsskripten für Serverüberwachung, API-Gesundheitsprüfungen und Systemwartungsaufgaben. Angetrieben von NaviTerms AutoTask-Engine mit Unterstützung für SSH-, HTTP- und Hybrid-Workflows.
 
@@ -170,7 +170,7 @@ Wir begrüßen Community-Beiträge! Sie können auf folgende Weise teilnehmen:
 - 🎨 **Icons Hinzufügen** - Bessere Icons entwerfen
 - 🌐 **Dokumentation Übersetzen** - Mehr Sprachen unterstützen
 
-### Wie Man Beiträgt
+### Wie Sie Beitragen Können
 
 1. Forken Sie dieses Repository
 2. Erstellen Sie Ihren Feature-Branch: `git checkout -b feature/amazing-script`
@@ -197,4 +197,4 @@ Ein Problem gefunden? Bitte melden Sie es in GitHub Issues:
 
 ---
 
-**Mit ❤️ vom NaviTerm Team**
+**Mit ❤️ erstellt vom NaviTerm Team**

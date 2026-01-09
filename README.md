@@ -1,47 +1,72 @@
 # NaviTerm
 
-Language / 语言: English | [中文](README.zh.md)
+Language / 语言: English | [中文](README.zh.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [日本語](README.ja.md) | [Русский](README.ru.md)
 
-Your all-in-one SSH terminal, SFTP client, and port forwarding tool, built from the ground up for macOS, iPhone, and iPad. Three powerful tools in one seamless app, perfect for system administrators, developers, DevOps engineers, and tech enthusiasts. With iCloud Sync and Background Activity, you can securely manage your servers from anywhere, anytime.
-
----
-
-### ✨ All-New Features
-
-- **Stay Connected in the Background**
-  Keep your SSH, SFTP, and Port Forwarding sessions running in the background. Connections stay active even when you switch apps or lock your screen, ensuring long-running tasks complete without interruption. An intelligent keep-alive mechanism maintains a stable, long-term connection.
-
-- **iCloud Sync Across All Your Devices**
-  Instantly sync your host configurations across your iPhone, iPad, and Mac with iCloud. Add a server on one device, and it's instantly available on all your others. Silent push notifications ensure changes from the cloud are automatically synced to your device. Automatic conflict resolution for worry-free editing across multiple devices.
+Automate your server operations with this professional SSH tool. Integrates SSH terminal, SFTP file management, port forwarding, automated tasks, and command snippets—built from the ground up for macOS, iPhone, and iPad. One app to solve all your remote management needs, with iCloud sync and background activity support.
 
 ---
 
-### 🛠️ Core Features
+## ✨ All-New Features
 
-- **Powerful SSH Terminal**
-  Full support for password and private key authentication (RSA, ED25519, P256). A high-performance asynchronous engine delivers a fast and fluid experience. Manage multiple servers at once with a tabbed interface. Full terminal emulation with support for colors and special characters. Quickly find what you need with in-terminal search and highlighting.
+### Automated Task Engine
+- Schedule repetitive operations to run automatically, freeing your hands
+- Visual script editor—no programming experience required
+- Rich built-in templates: server monitoring, log analysis, batch deployment
+- Multi-server batch operations—complete cross-machine tasks with one tap
+- Complete task logs with clear execution results
 
-- **Intuitive SFTP File Manager**
-  A user-friendly dual-pane file browser. Easily upload, download, rename, delete files, and change permissions. View real-time transfer progress and cancel operations on the fly. Preview a wide range of file types directly in the app. Streamline your workflow with drag-and-drop file transfers.
+### Background Activity
+- SSH/SFTP/Port Forwarding sessions continue running in the background
+- Connections stay active even when you switch apps or lock your screen
 
-- **Advanced Port Forwarding**
-  Set up both local and remote port forwarding. Configure SSH tunnel proxies with ease. Securely access services on private networks. Perfect for testing and debugging services.
-
-- **Secure Key Management**
-  Import your OpenSSH-compatible private keys. Supports multiple key formats, including Ed25519, RSA, and P256/EC. Keys are stored securely on your device and are never uploaded. Works with both encrypted and unencrypted keys. Connect instantly with one-tap key authentication.
-
----
-
-### 🔒 Security & Privacy
-
-- **End-to-End Encryption**: All connections are secured with the SSH protocol.
-- **On-Device Storage**: Private keys and sensitive data are stored only on your device.
-- **Zero Data Collection**: We do not collect or share any of your connection information.
-- **Built on Open Source**: Core functionalities are built on transparent, open-source technology.
+### iCloud Sync Across Devices
+- Hosts, port forwards, and command snippets sync in real-time across iPhone, iPad, and Mac
+- Add a configuration on any device, and it's instantly available on all others
+- Silent push notifications keep cloud changes automatically synced
 
 ---
 
-### 🙏 Special Thanks
+## 🔧 Core Features
+
+### SSH Terminal
+- Password and private key authentication (RSA, ED25519, P256)
+- Manage multiple servers simultaneously with tabbed interface
+- Full terminal emulation with color and special character support
+- In-terminal search with highlighting
+
+### Command Snippets
+- Save frequently used commands for one-tap execution
+- Build your personal command library—say goodbye to repetitive typing
+- Variable substitution for flexible adaptation to different scenarios
+
+### SFTP File Management
+- Dual-pane file browser with drag-and-drop upload/download
+- File rename, delete, and permission modification
+- Real-time transfer progress with cancellation support
+- Preview multiple file types
+
+### Port Forwarding
+- Local/remote port forwarding
+- SOCKS5 dynamic proxy
+- SSH tunnel encryption
+- Secure access to internal network services
+
+### Key Management
+- OpenSSH compatible—supports Ed25519, RSA, P256/EC
+- Secure local storage, never uploaded
+- One-tap quick authentication
+
+---
+
+## 🎯 Technical Highlights
+
+- **Secure & Reliable**: End-to-end SSH encryption, private keys stored locally only, zero data collection
+- **Global**: Supports 25+ languages
+- **Native Experience**: Perfectly adapted to Apple design language, responsive layout, gesture controls
+
+---
+
+## 🙏 Special Thanks
 
 This app is built with the following amazing open-source projects:
 
@@ -50,35 +75,21 @@ This app is built with the following amazing open-source projects:
 
 ---
 
-### 🌍 Global Support
+## 💎 Subscription Model
 
-Available in 25+ Languages: Including English, Japanese, Korean, German, French, Spanish, Portuguese, Italian, Russian, Arabic, Hindi, Persian, Thai, Vietnamese, Indonesian, Simplified Chinese, Traditional Chinese, and more.
-
----
-
-### 💎 Subscription Model
-
-- **Free Version**: Get the full experience with support for up to 5 hosts.
-- **Pro Subscription**: Unlock unlimited hosts with flexible monthly or annual plans.
-- **Works Offline**: Pro subscribers can use the app without an internet connection.
+- **Free Version**: Full feature experience with up to 5 hosts
+- **Pro Version**: Unlimited hosts with flexible monthly or annual plans
+- **Pro subscribers enjoy offline usage support**
 
 ---
 
-### 🎨 Design Highlights
-
-- **Truly Native**: Designed to feel right at home on Apple platforms.
-- **Responsive Design**: Perfectly optimized for every screen size.
-- **Intuitive Gestures**: A touch-first experience designed for iPhone and iPad.
-
----
-
-### 🚀 Download
+## 🚀 Download
 
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/naviterm/id6747072398)
 
 ---
 
-### 🎁 Promo Code Redemption Guide
+## 🎁 Promo Code Redemption Guide
 
 We occasionally offer free subscription promo codes (1 month or 1 year). If you have received a promo code:
 
@@ -94,7 +105,7 @@ We occasionally offer free subscription promo codes (1 month or 1 year). If you 
 
 ---
 
-### 📜 Legal
+## 📜 Legal
 
 - [Terms of Use](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/)
 - [Privacy Policy](https://www.trivix.cn/NaviTerm_Privacy_Policy.html)
