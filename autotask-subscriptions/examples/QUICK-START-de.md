@@ -22,7 +22,7 @@ Starten Sie mit NaviTerm AutoTask in 5 Minuten!
    - **Auto-Update**: `0 6 * * *` (Täglich um 6 Uhr)
 5. Tippen Sie auf **Hinzufügen**
 
-✅ Fertig! Sie haben jetzt 11 Beispielskripte einsatzbereit.
+✅ Fertig! Abonnement hinzugefügt, alle Beispielskripte sind jetzt verfügbar.
 
 ---
 

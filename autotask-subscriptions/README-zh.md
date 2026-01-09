@@ -18,20 +18,30 @@
 
 ## 📋 可用订阅
 
+### 完整套件（推荐）
+使用 NaviTerm 原生 JSON 格式的完整脚本集合。
+
+**JSON 格式 (.json) - NaviTerm 标准格式：**
+```
+https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json
+```
+
 ### SSH 监控套件
 使用全面的健康检查监控您的服务器。
 
-**标准配置格式：**
+**兼容格式：**
+
+Config 格式 (.conf)：
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/ssh-monitoring.conf
 ```
 
-**简单 Cron 格式：**
+Cron 格式 (.conf)：
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/ssh-monitoring-simple.conf
 ```
 
-**扩展 Cron 格式：**
+Cron+ 格式 (.conf)：
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/ssh-monitoring-extended.conf
 ```
@@ -39,21 +49,16 @@ https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscription
 ### API 监控套件
 监控您的 API 和 Web 服务。
 
-**标准配置格式：**
+**兼容格式：**
+
+Config 格式 (.conf)：
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/api-monitoring.conf
 ```
 
-**简单 Cron 格式：**
+Cron 格式 (.conf)：
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/api-monitoring-simple.conf
-```
-
-### 完整套件（推荐）
-一个订阅包含所有脚本（JSON 格式）。
-
-```
-https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json
 ```
 
 ## 📦 包含内容

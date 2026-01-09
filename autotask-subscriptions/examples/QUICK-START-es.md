@@ -22,7 +22,7 @@
    - **Actualización Automática**: `0 6 * * *` (Diariamente a las 6 AM)
 5. Toca **Agregar**
 
-✅ ¡Listo! Ahora tienes 11 scripts de ejemplo listos para usar.
+✅ ¡Listo! Suscripción agregada, todos los scripts de ejemplo están ahora disponibles.
 
 ---
 

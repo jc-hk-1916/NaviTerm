@@ -18,20 +18,30 @@ A comprehensive collection of automation scripts for server monitoring, API heal
 
 ## 📋 Available Subscriptions
 
+### Complete Suite (Recommended)
+All scripts in one subscription using NaviTerm's native JSON format.
+
+**JSON Format (.json) - NaviTerm Standard:**
+```
+https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json
+```
+
 ### SSH Monitoring Suite
 Monitor your servers with comprehensive health checks.
 
-**Standard Config Format:**
+**Compatible Formats:**
+
+Config Format (.conf):
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/ssh-monitoring.conf
 ```
 
-**Simple Cron Format:**
+Cron Format (.conf):
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/ssh-monitoring-simple.conf
 ```
 
-**Extended Cron Format:**
+Cron+ Format (.conf):
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/ssh-monitoring-extended.conf
 ```
@@ -39,21 +49,16 @@ https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscription
 ### API Monitoring Suite
 Monitor your APIs and web services.
 
-**Standard Config Format:**
+**Compatible Formats:**
+
+Config Format (.conf):
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/api-monitoring.conf
 ```
 
-**Simple Cron Format:**
+Cron Format (.conf):
 ```
 https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/api-monitoring-simple.conf
-```
-
-### Complete Suite (Recommended)
-All scripts in one subscription (JSON format).
-
-```
-https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json
 ```
 
 ## 📦 What's Included
