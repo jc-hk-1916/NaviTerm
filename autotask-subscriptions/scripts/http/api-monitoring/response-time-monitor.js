@@ -119,6 +119,30 @@ function finishMonitoring() {
     console.log(`Slow responses: ${slowCount}`);
     console.log(`Errors: ${errorCount}`);
 
+    // Send summary notification
+    const okCount = results.filter(r => r.status === 'OK').length;
+    let notificationTitle = 'API Response Time Monitor';
+    let notificationBody = '';
+
+    if (errorCount > 0 || slowCount > 0) {
+        // Alert notification for issues
+        notificationTitle = '⚠️ API Performance Issues';
+        const issues = [];
+        if (errorCount > 0) issues.push(`${errorCount} error${errorCount > 1 ? 's' : ''}`);
+        if (slowCount > 0) issues.push(`${slowCount} slow response${slowCount > 1 ? 's' : ''}`);
+        notificationBody = `${issues.join(', ')} detected\nAverage: ${avgResponseTime}ms | OK: ${okCount}/${ENDPOINTS.length}`;
+    } else {
+        // Success notification
+        notificationTitle = '✓ API Performance Normal';
+        notificationBody = `All ${ENDPOINTS.length} endpoints responding normally\nAverage response time: ${avgResponseTime}ms`;
+    }
+
+    $notification.post(
+        notificationTitle,
+        notificationBody,
+        ''
+    );
+
     $done(JSON.stringify({
         success: true,
         results: results,
