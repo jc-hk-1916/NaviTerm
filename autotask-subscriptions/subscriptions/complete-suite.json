@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "description": "NaviTerm AutoTask - Complete Automation Suite with 11 Example Scripts",
+  "description": "NaviTerm AutoTask - Complete Automation Suite with 13 Example Scripts",
   "author": "NaviTerm Team",
   "repository": "https://github.com/jc-hk-1916/NaviTerm",
   "scripts": [
@@ -61,6 +61,20 @@
       }
     },
     {
+      "name": "Historical Data Tracker",
+      "type": "cron",
+      "cronExpression": "0 */1 * * *",
+      "enabled": true,
+      "timeout": 30,
+      "source": {
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/historical-data-tracker.js"
+      },
+      "icon": {
+        "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/history-tracker.png"
+      }
+    },
+    {
       "name": "System Information",
       "type": "cron",
       "cronExpression": "0 0 * * *",
@@ -86,6 +100,20 @@
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/network-check.png"
+      }
+    },
+    {
+      "name": "SSH Connection Test",
+      "type": "cron",
+      "cronExpression": "0 */6 * * *",
+      "enabled": true,
+      "timeout": 60,
+      "source": {
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/network/ssh-connection-test.js"
+      },
+      "icon": {
+        "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/ssh-test.png"
       }
     },
     {

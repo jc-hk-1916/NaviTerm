@@ -58,11 +58,11 @@ https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscription
 
 ## 📦 含まれる内容
 
-このリポジトリは、NaviTerm AutoTaskの完全な機能を示す11のサンプルスクリプトを提供します：
+このリポジトリは、NaviTerm AutoTaskの完全な機能を示す13のサンプルスクリプトを提供します：
 
-### SSHスクリプト（6例）
+### SSHスクリプト（8例）
 
-**🔍 監視（4スクリプト）**
+**🔍 監視（5スクリプト）**
 - **サーバーヘルスチェック** (`scripts/ssh/monitoring/server-health-check.js`)
   - 包括的なCPU、メモリ、ディスク監視
   - 設定可能なアラート閾値
@@ -83,17 +83,29 @@ https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscription
   - プロセス停止時の自動アラート
   - カスタマイズ可能なプロセスリスト
 
+- **履歴データトラッカー** (`scripts/ssh/monitoring/historical-data-tracker.js`)
+  - 永続ストレージを使用してサーバーメトリクスを追跡
+  - 負荷履歴データを記録
+  - 統計を計算（平均、最大、最小）
+  - 古いデータの自動クリーンアップ
+
 **📊 システム情報（1スクリプト）**
 - **システム情報** (`scripts/ssh/system/system-info.js`)
   - 完全なシステム情報を収集
   - OS、カーネル、CPU、メモリなど
   - 定期的なシステムレポートを生成
 
-**🌐 ネットワークチェック（1スクリプト）**
+**🌐 ネットワークチェック（2スクリプト）**
 - **ネットワーク接続性チェック** (`scripts/ssh/network/connectivity-check.js`)
   - 複数のターゲットへのPingテスト
   - 自動ネットワーク障害アラート
   - 接続品質監視
+
+- **SSH接続テスト** (`scripts/ssh/network/ssh-connection-test.js`)
+  - 設定されたすべてのSSHホスト接続をテスト
+  - コマンド実行機能を検証
+  - 接続失敗時の自動アラート
+  - 接続テストレポートを生成
 
 ### HTTPスクリプト（4例）
 

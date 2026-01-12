@@ -58,11 +58,11 @@ https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscription
 
 ## 📦 Qué Incluye
 
-Este repositorio proporciona 11 scripts de ejemplo que demuestran las capacidades completas de NaviTerm AutoTask:
+Este repositorio proporciona 13 scripts de ejemplo que demuestran las capacidades completas de NaviTerm AutoTask:
 
-### Scripts SSH (6 ejemplos)
+### Scripts SSH (8 ejemplos)
 
-**🔍 Monitoreo (4 scripts)**
+**🔍 Monitoreo (5 scripts)**
 - **Verificación de Salud del Servidor** (`scripts/ssh/monitoring/server-health-check.js`)
   - Monitoreo completo de CPU, memoria y disco
   - Umbrales de alerta configurables
@@ -83,17 +83,29 @@ Este repositorio proporciona 11 scripts de ejemplo que demuestran las capacidade
   - Alertas automáticas cuando los procesos se detienen
   - Lista de procesos personalizable
 
+- **Rastreador de Datos Históricos** (`scripts/ssh/monitoring/historical-data-tracker.js`)
+  - Rastrear métricas del servidor usando almacenamiento persistente
+  - Registrar datos históricos de carga
+  - Calcular estadísticas (promedio, máximo, mínimo)
+  - Limpieza automática de datos antiguos
+
 **📊 Información del Sistema (1 script)**
 - **Información del Sistema** (`scripts/ssh/system/system-info.js`)
   - Recopilar información completa del sistema
   - SO, kernel, CPU, memoria, etc.
   - Generar informes periódicos del sistema
 
-**🌐 Verificación de Red (1 script)**
+**🌐 Verificación de Red (2 scripts)**
 - **Verificación de Conectividad de Red** (`scripts/ssh/network/connectivity-check.js`)
   - Prueba de ping a múltiples objetivos
   - Alertas automáticas de fallas de red
   - Monitoreo de calidad de conexión
+
+- **Prueba de Conexión SSH** (`scripts/ssh/network/ssh-connection-test.js`)
+  - Probar todas las conexiones de hosts SSH configurados
+  - Verificar capacidad de ejecución de comandos
+  - Alertas automáticas para conexiones fallidas
+  - Generar informes de prueba de conexión
 
 ### Scripts HTTP (4 ejemplos)
 
