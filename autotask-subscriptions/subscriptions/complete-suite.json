@@ -7,14 +7,14 @@
     {
       "name": "Server Health Check",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/server-health-check.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/server-health-check.js",
       "cronExpression": "0 */6 * * *",
       "enabled": true,
       "timeout": 60,
       "notification": true,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/server-health-check.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/server-health.png"
@@ -23,14 +23,14 @@
     {
       "name": "Disk Space Alert",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/disk-alert.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/disk-alert.js",
       "cronExpression": "0 8 * * *",
       "enabled": true,
       "timeout": 30,
       "notification": true,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/disk-alert.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/disk-alert.png"
@@ -39,14 +39,14 @@
     {
       "name": "Memory Monitor",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/memory-monitor.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/memory-monitor.js",
       "cronExpression": "0 */2 * * *",
       "enabled": true,
       "timeout": 30,
       "notification": true,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/memory-monitor.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/memory-monitor.png"
@@ -55,14 +55,14 @@
     {
       "name": "Process Monitor",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/process-monitor.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/process-monitor.js",
       "cronExpression": "*/15 * * * *",
       "enabled": true,
       "timeout": 30,
       "notification": true,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/monitoring/process-monitor.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/process-monitor.png"
@@ -71,14 +71,14 @@
     {
       "name": "System Information",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/system/system-info.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/system/system-info.js",
       "cronExpression": "0 0 * * *",
       "enabled": true,
       "timeout": 30,
       "notification": false,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/system/system-info.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/system-info.png"
@@ -87,14 +87,14 @@
     {
       "name": "Network Connectivity Check",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/network/connectivity-check.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/network/connectivity-check.js",
       "cronExpression": "*/30 * * * *",
       "enabled": true,
       "timeout": 60,
       "notification": true,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/ssh/network/connectivity-check.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/network-check.png"
@@ -103,14 +103,14 @@
     {
       "name": "API Health Check",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/api-monitoring/api-health-check.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/api-monitoring/api-health-check.js",
       "cronExpression": "*/5 * * * *",
       "enabled": true,
       "timeout": 30,
       "notification": true,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/api-monitoring/api-health-check.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/api-health.png"
@@ -119,14 +119,14 @@
     {
       "name": "API Response Time Monitor",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/api-monitoring/response-time-monitor.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/api-monitoring/response-time-monitor.js",
       "cronExpression": "*/10 * * * *",
       "enabled": true,
       "timeout": 30,
       "notification": true,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/api-monitoring/response-time-monitor.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/response-time.png"
@@ -135,14 +135,14 @@
     {
       "name": "Data Collector",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/data-collection/data-collector.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/data-collection/data-collector.js",
       "cronExpression": "0 */4 * * *",
       "enabled": true,
       "timeout": 30,
       "notification": false,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/data-collection/data-collector.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/data-collector.png"
@@ -151,14 +151,14 @@
     {
       "name": "Webhook Integration",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/integrations/webhook-integration.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/integrations/webhook-integration.js",
       "cronExpression": "0 */12 * * *",
       "enabled": false,
       "timeout": 30,
       "notification": false,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/http/integrations/webhook-integration.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/webhook.png"
@@ -167,14 +167,14 @@
     {
       "name": "Server Status Report",
       "type": "cron",
-      "content": "// Remote script: https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/hybrid/server-status-report.js",
+      "content": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/hybrid/server-status-report.js",
       "cronExpression": "0 */12 * * *",
       "enabled": true,
       "timeout": 60,
       "notification": true,
       "source": {
         "type": "remote",
-        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/subscriptions/complete-suite.json"
+        "url": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/scripts/hybrid/server-status-report.js"
       },
       "icon": {
         "remoteUrl": "https://raw.githubusercontent.com/jc-hk-1916/NaviTerm/main/autotask-subscriptions/icons/status-report.png"
