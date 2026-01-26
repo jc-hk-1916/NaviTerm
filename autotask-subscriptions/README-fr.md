@@ -165,13 +165,8 @@ Documentation complète disponible en plusieurs langues:
 
 | Langue | Démarrage Rapide | Référence API |
 |--------|------------------|---------------|
-| 🇫🇷 Français | [Démarrage Rapide](examples/QUICK-START-fr.md) | [Référence API](examples/API-REFERENCE-fr.md) |
 | 🇺🇸 English | [Quick Start](examples/QUICK-START.md) | [API Reference](examples/API-REFERENCE.md) |
 | 🇨🇳 中文 | [快速开始](examples/QUICK-START-zh.md) | [API参考](examples/API-REFERENCE-zh.md) |
-| 🇪🇸 Español | [Inicio Rápido](examples/QUICK-START-es.md) | [Referencia API](examples/API-REFERENCE-es.md) |
-| 🇩🇪 Deutsch | [Schnellstart](examples/QUICK-START-de.md) | [API-Referenz](examples/API-REFERENCE-de.md) |
-| 🇯🇵 日本語 | [クイックスタート](examples/QUICK-START-ja.md) | [APIリファレンス](examples/API-REFERENCE-ja.md) |
-| 🇷🇺 Русский | [Быстрый Старт](examples/QUICK-START-ru.md) | [Справочник API](examples/API-REFERENCE-ru.md) |
 
 ## 🤝 Contribuer
 
