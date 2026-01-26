@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.0]
+
+### New Features
+- Automation Task Engine - Schedule recurring ops tasks with ease. Includes a visual script editor and support for batch operations
+- Terminal Customization - Make the terminal truly yours with personalized themes and color schemes
+- Enhanced iCloud Sync - Now supports cross-device sync for hosts, port forwarding, and command snippets
+
+
 ## [2.5.0]
 
 ### New Features

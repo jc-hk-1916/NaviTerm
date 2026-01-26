@@ -123,7 +123,7 @@
 
 ![App Screenshot](images/5.png)
 
-![App Screenshot](images/6.jpg)
+![App Screenshot](images/6.png)
 
 ![App Screenshot](images/7.jpg)
 
@@ -132,3 +132,7 @@
 ![App Screenshot](images/9.jpg)
 
 ![App Screenshot](images/10.jpg)
+
+![App Screenshot](images/11.jpg)
+
+![App Screenshot](images/12.jpg)
