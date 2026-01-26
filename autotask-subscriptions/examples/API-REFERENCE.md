@@ -11,12 +11,12 @@ Complete reference for all available JavaScript APIs in NaviTerm AutoTask.
 - [Notifications](#notifications)
 - [Persistent Storage](#persistent-storage)
 - [Runtime Variables](#runtime-variables)
-- [Preferences](#preferences)
 - [Environment Variables](#environment-variables)
-- [System Environment](#system-environment)
 - [Date Utilities](#date-utilities)
+- [Quantumult X Compatibility Layer](#quantumult-x-compatibility-layer)
 - [Logging](#logging)
 - [Script Control](#script-control)
+- [Advanced Features](#advanced-features)
 
 ---
 
@@ -56,22 +56,6 @@ $ssh.exec('host-123', 'uptime', (result) => {
 
 Get all configured SSH hosts.
 
-**Parameters:**
-- `callback` (function): Callback function with hosts array
-
-**Callback signature:**
-```javascript
-(hosts) => {
-    // hosts is an array of host objects:
-    // - id (string): Host ID
-    // - name (string): Host name
-    // - host (string): Hostname or IP
-    // - port (number): SSH port
-    // - username (string): SSH username
-    // - group (string): Host group (optional)
-}
-```
-
 **Example:**
 ```javascript
 $ssh.getHosts((hosts) => {
@@ -82,53 +66,6 @@ $ssh.getHosts((hosts) => {
 });
 ```
 
-### `$ssh.connect(hostId, callback)`
-
-Establish SSH connection to a host.
-
-**Parameters:**
-- `hostId` (string): Host ID
-- `callback` (function): Callback with connection result
-
-**Example:**
-```javascript
-$ssh.connect('host-123', (success, error) => {
-    if (success) {
-        console.log('Connected successfully');
-    } else {
-        console.error('Connection failed:', error);
-    }
-});
-```
-
-### `$ssh.disconnect(hostId)`
-
-Disconnect from SSH host.
-
-**Parameters:**
-- `hostId` (string): Host ID
-
-**Example:**
-```javascript
-$ssh.disconnect('host-123');
-```
-
-### `$ssh.isConnected(hostId)`
-
-Check if connected to a host.
-
-**Parameters:**
-- `hostId` (string): Host ID
-
-**Returns:** `boolean`
-
-**Example:**
-```javascript
-if ($ssh.isConnected('host-123')) {
-    console.log('Already connected');
-}
-```
-
 ---
 
 ## HTTP Client
@@ -136,30 +73,6 @@ if ($ssh.isConnected('host-123')) {
 ### `$httpClient.get(urlOrOptions, callback)`
 
 Send HTTP GET request.
-
-**Parameters:**
-- `urlOrOptions` (string | object): URL string or options object
-- `callback` (function): Callback with response
-
-**Options object:**
-```javascript
-{
-    url: 'https://api.example.com/data',
-    headers: {
-        'Authorization': 'Bearer token',
-        'Content-Type': 'application/json'
-    }
-}
-```
-
-**Callback signature:**
-```javascript
-(error, response, body) => {
-    // error (string): Error message (null if success)
-    // response (object): Response object with status and headers
-    // body (string): Response body
-}
-```
 
 **Example:**
 ```javascript
@@ -169,7 +82,7 @@ $httpClient.get('https://api.example.com/data', (error, response, body) => {
         return;
     }
     console.log('Status:', response.status);
-    console.log('Body:', body);
+    console.log('Response:', body);
 });
 ```
 
@@ -194,62 +107,71 @@ $httpClient.post({
 
 ### `$httpClient.put(urlOrOptions, callback)`
 
-Send HTTP PUT request. Same signature as POST.
+Send HTTP PUT request. Same usage as POST.
 
 ### `$httpClient.delete(urlOrOptions, callback)`
 
-Send HTTP DELETE request. Same signature as GET.
+Send HTTP DELETE request. Same usage as GET.
 
 ### `$httpClient.head(urlOrOptions, callback)`
 
-Send HTTP HEAD request. Same signature as GET.
+Send HTTP HEAD request. Same usage as GET.
 
 ### `$httpClient.patch(urlOrOptions, callback)`
 
-Send HTTP PATCH request. Same signature as POST.
+Send HTTP PATCH request. Same usage as POST.
+
+---
 
 ### `$task.fetch(options)`
 
-Promise-based HTTP client.
+Promise-based HTTP client (recommended).
+
+**🌟 Features:**
+- ✅ Automatically ignores SSL certificate validation (for self-signed certificates)
+- ✅ Smart request strategy: GET/HEAD uses downloadTask to bypass resource size limits
 
 **Parameters:**
-- `options` (object): Request options
+- `url` (string): Request URL
+- `method` (string): Request method (GET, POST, PUT, DELETE, PATCH, HEAD)
+- `headers` (object): Request headers
+- `body` (string): Request body (POST/PUT/PATCH only)
 
-**Options:**
+**Returns:**
+Promise object, resolve value includes:
+- `status` (number): HTTP status code
+- `headers` (object): Response headers
+- `body` (string): Response body
+
+**Examples:**
 ```javascript
-{
-    url: 'https://api.example.com/data',
-    method: 'GET',  // GET, POST, PUT, DELETE, etc.
-    headers: {
-        'Authorization': 'Bearer token'
-    },
-    body: 'request body'
-}
-```
-
-**Returns:** Promise with response object
-
-**Response object:**
-```javascript
-{
-    status: 200,
-    headers: { ... },
-    body: 'response body'
-}
-```
-
-**Example:**
-```javascript
+// GET request
 $task.fetch({
     url: 'https://api.example.com/data',
-    method: 'GET'
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json'
+    }
 })
 .then(response => {
     console.log('Status:', response.status);
-    console.log('Body:', response.body);
+    console.log('Response:', response.body);
 })
 .catch(error => {
     console.error('Error:', error.error);
+});
+
+// POST request
+$task.fetch({
+    url: 'https://api.example.com/data',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ key: 'value' })
+})
+.then(response => {
+    console.log('Submitted successfully:', response.body);
 });
 ```
 
@@ -264,44 +186,44 @@ Send system notification.
 **Parameters:**
 - `title` (string): Notification title
 - `subtitle` (string): Notification subtitle
-- `body` (string): Notification body
-- `options` (object): Optional settings
-
-**Options:**
-```javascript
-{
-    url: 'https://example.com',  // URL to open when clicked
-    'open-url': 'https://example.com'  // Alternative key
-}
-```
+- `body` (string): Notification content
+- `options` (object): Optional configuration
+  - `url` or `open-url` (string): URL to open when notification is clicked
 
 **Example:**
 ```javascript
 $notification.post(
     'Server Alert',
     'High CPU Usage',
-    'CPU usage is at 95%',
+    'CPU usage reached 95%',
     { url: 'https://monitoring.example.com' }
 );
 ```
 
 ### `$notify(title, subtitle, body, options)`
 
-Alternative notification API. Same signature as `$notification.post`.
+Shorthand for `$notification.post()`, same parameters.
+
+**Example:**
+```javascript
+$notify('Task Complete', 'Data Processing', 'Processed 100 records', { 'open-url': 'app://results' });
+```
 
 ---
 
 ## Persistent Storage
+
+Persistent storage saves data permanently, surviving script restarts.
 
 ### `$persistentStore.write(value, key)`
 
 Save data permanently.
 
 **Parameters:**
-- `value` (string): Value to save
+- `value` (string): Value to save (typically JSON string)
 - `key` (string): Storage key
 
-**Returns:** `boolean` (success status)
+**Returns:** boolean - Success status
 
 **Example:**
 ```javascript
@@ -316,7 +238,7 @@ Read saved data.
 **Parameters:**
 - `key` (string): Storage key
 
-**Returns:** `string | null`
+**Returns:** string | null
 
 **Example:**
 ```javascript
@@ -331,22 +253,22 @@ if (data) {
 
 Get all storage keys.
 
-**Returns:** Array of strings
+**Returns:** Array<string>
 
 **Example:**
 ```javascript
 const keys = $persistentStore.allKeys();
-console.log('Stored keys:', keys);
+console.log('All keys:', keys);
 ```
 
 ### `$persistentStore.remove(key)`
 
-Remove a key from storage.
+Delete data for a specific key.
 
 **Parameters:**
 - `key` (string): Storage key
 
-**Returns:** `boolean`
+**Returns:** boolean - Success status
 
 **Example:**
 ```javascript
@@ -355,28 +277,29 @@ $persistentStore.remove('my-data');
 
 ### `$persistentStore.clear()`
 
-Clear all stored data.
+Clear all persistent data.
 
 **Example:**
 ```javascript
 $persistentStore.clear();
+console.log('All persistent data cleared');
 ```
 
 ---
 
 ## Runtime Variables
 
-Temporary variables that exist only during script execution.
+🆕 **Custom Extension API** - Temporary variables that exist only during script execution (memory-level, not persisted).
 
 ### `$variables.set(key, value)`
 
-Set runtime variable.
+Set a runtime variable.
 
 **Parameters:**
 - `key` (string): Variable name
 - `value` (string): Variable value
 
-**Returns:** `boolean`
+**Returns:** boolean - Success status
 
 **Example:**
 ```javascript
@@ -385,12 +308,12 @@ $variables.set('counter', '10');
 
 ### `$variables.get(key)`
 
-Get runtime variable.
+Get a runtime variable.
 
 **Parameters:**
 - `key` (string): Variable name
 
-**Returns:** `string | null`
+**Returns:** string | null
 
 **Example:**
 ```javascript
@@ -398,14 +321,49 @@ const counter = $variables.get('counter');
 console.log('Counter:', counter);
 ```
 
-### `$variables.has(key)`
+### `$variables.allKeys()`
 
-Check if variable exists.
+Get all runtime variable keys.
+
+**Returns:** Array<string>
+
+**Example:**
+```javascript
+const keys = $variables.allKeys();
+console.log('All runtime variables:', keys);
+```
+
+### `$variables.remove(key)`
+
+Delete a specific runtime variable.
 
 **Parameters:**
 - `key` (string): Variable name
 
-**Returns:** `boolean`
+**Returns:** boolean - Success status
+
+**Example:**
+```javascript
+$variables.remove('counter');
+```
+
+### `$variables.clear()`
+
+Clear all runtime variables.
+
+**Example:**
+```javascript
+$variables.clear();
+```
+
+### `$variables.has(key)`
+
+Check if a runtime variable exists.
+
+**Parameters:**
+- `key` (string): Variable name
+
+**Returns:** boolean
 
 **Example:**
 ```javascript
@@ -414,62 +372,12 @@ if ($variables.has('counter')) {
 }
 ```
 
-### `$variables.allKeys()`
-
-Get all variable names.
-
-**Returns:** Array of strings
-
-### `$variables.remove(key)`
-
-Remove a variable.
-
-**Parameters:**
-- `key` (string): Variable name
-
-**Returns:** `boolean`
-
-### `$variables.clear()`
-
-Clear all variables.
-
 ---
 
-## Preferences
-
-Similar to persistent storage but designed for user preferences.
-
-### `$prefs.setValueForKey(value, key)`
-
-Set preference value.
-
-**Parameters:**
-- `value` (string): Preference value
-- `key` (string): Preference key
-
-**Returns:** `boolean`
-
-### `$prefs.valueForKey(key)`
-
-Get preference value.
-
-**Parameters:**
-- `key` (string): Preference key
-
-**Returns:** `string | null`
-
-### `$prefs.removeValueForKey(key)`
-
-Remove preference.
-
-**Parameters:**
-- `key` (string): Preference key
-
-**Returns:** `boolean`
-
-### `$prefs.removeAllValues()`
-
-Clear all preferences.
+**💡 Use Cases:**
+- Pass temporary data between multiple async operations in the same script
+- Avoid persisting unnecessary temporary state
+- Automatically cleared after script execution, no manual cleanup needed
 
 ---
 
@@ -477,87 +385,129 @@ Clear all preferences.
 
 ### `$env.get(key, defaultValue)`
 
-Get environment variable.
+Get environment variable (supports default value).
 
 **Parameters:**
 - `key` (string): Variable name
-- `defaultValue` (string): Default value if not found
+- `defaultValue` (string, optional): Default value
 
-**Returns:** `string | null`
+**Returns:** string | null
 
 **Example:**
 ```javascript
 const apiKey = $env.get('API_KEY', 'default-key');
+console.log('API Key:', apiKey);
 ```
 
 ### `$env.set(key, value)`
 
-Set environment variable.
+Set environment variable (persisted).
 
 **Parameters:**
 - `key` (string): Variable name
 - `value` (string): Variable value
 
-**Returns:** `boolean`
+**Returns:** boolean - Success status
+
+**Example:**
+```javascript
+$env.set('API_KEY', 'your-secret-key');
+```
 
 ### `$env.remove(key)`
 
-Remove environment variable.
+Delete environment variable.
 
 **Parameters:**
 - `key` (string): Variable name
 
-**Returns:** `boolean`
-
-### `$env.allKeys()`
-
-Get all environment variable names.
-
-**Returns:** Array of strings
-
-### `$env.all()`
-
-Get all environment variables as object.
-
-**Returns:** Object with key-value pairs
+**Returns:** boolean - Success status
 
 **Example:**
 ```javascript
-const allEnv = $env.all();
-console.log('Environment:', allEnv);
+$env.remove('OLD_CONFIG');
+```
+
+### `$env.allKeys()` 🆕
+
+Get all environment variable keys (extension method).
+
+**Returns:** Array<string>
+
+**Example:**
+```javascript
+const keys = $env.allKeys();
+console.log('All environment variables:', keys);
+```
+
+### `$env.all()` 🆕
+
+Get all environment variables as key-value pairs (extension method).
+
+**Returns:** object
+
+**Example:**
+```javascript
+const allEnvVars = $env.all();
+console.log('All environment variables:', JSON.stringify(allEnvVars));
 ```
 
 ---
 
-## System Environment
+### `$prefs` - Quantumult X Compatible API
+
+`$prefs` is equivalent to `$env`, stored with `autotask_env_` prefix. Data appears in the "Environment Variables" tab of the variables management page.
+
+**Methods:**
+- `$prefs.valueForKey(key)` - Equivalent to `$env.get(key)`
+- `$prefs.setValueForKey(value, key)` - Equivalent to `$env.set(key, value)`
+- `$prefs.removeValueForKey(key)` - Equivalent to `$env.remove(key)`
+- `$prefs.removeAllValues()` - Clear all environment variables
+
+**Example:**
+```javascript
+// Set
+$prefs.setValueForKey('my-value', 'MY_KEY');
+
+// Get
+const value = $prefs.valueForKey('MY_KEY');
+console.log('Value:', value);
+
+// Delete
+$prefs.removeValueForKey('MY_KEY');
+```
+
+---
 
 ### `$environment`
 
-Read-only object with system information.
+Read-only system information object.
 
 **Properties:**
-- `system` (string): "iOS" or "macOS"
+- `system` (string): Operating system ("iOS" or "macOS")
 - `version` (string): App version
-- `language` (string): System language code
+- `language` (string): System language
 - `deviceName` (string): Device name
 
 **Example:**
 ```javascript
-console.log('System:', $environment.system);
-console.log('Version:', $environment.version);
-console.log('Language:', $environment.language);
-console.log('Device:', $environment.deviceName);
+console.log('System:', $environment.system);      // "iOS" or "macOS"
+console.log('Version:', $environment.version);     // App version
+console.log('Language:', $environment.language);   // System language
+console.log('Device:', $environment.deviceName);   // Device name
 ```
 
 ---
 
 ## Date Utilities
 
+🆕 **Custom Extension API** - Convenient date formatting utilities.
+
 ### `$date.now()`
 
-Get current date/time with milliseconds.
+Get current date/time (with milliseconds).
 
-**Returns:** String in format "YYYY-MM-DD HH:mm:ss.SSS"
+**Returns:** string - Format: "YYYY-MM-DD HH:mm:ss.SSS"
 
 **Example:**
 ```javascript
@@ -567,9 +517,9 @@ console.log('Now:', now);  // "2024-01-15 14:30:45.123"
 
 ### `$date.nowSimple()`
 
-Get current date/time without milliseconds.
+Get current date/time (without milliseconds).
 
-**Returns:** String in format "YYYY-MM-DD HH:mm:ss"
+**Returns:** string - Format: "YYYY-MM-DD HH:mm:ss"
 
 **Example:**
 ```javascript
@@ -582,29 +532,254 @@ console.log('Now:', now);  // "2024-01-15 14:30:45"
 Format current date/time with custom format.
 
 **Parameters:**
-- `formatString` (string): Date format string (optional, default: "yyyy-MM-dd HH:mm:ss")
+- `formatString` (string, optional): Date format string (default: "yyyy-MM-dd HH:mm:ss")
 
-**Returns:** Formatted date string
+**Returns:** string
 
-**Example:**
+**Supported format symbols:**
+- `yyyy` - 4-digit year
+- `MM` - Month (01-12)
+- `dd` - Day (01-31)
+- `HH` - Hour (00-23)
+- `mm` - Minute (00-59)
+- `ss` - Second (00-59)
+- `SSS` - Millisecond (000-999)
+
+**Examples:**
 ```javascript
 const date = $date.format('yyyy-MM-dd');
 console.log('Date:', date);  // "2024-01-15"
 
 const time = $date.format('HH:mm:ss');
 console.log('Time:', time);  // "14:30:45"
+
+const custom = $date.format('yyyy/MM/dd HH:mm');
+console.log('Custom:', custom);  // "2024/01/15 14:30"
 ```
 
 ### `$date.timestamp()`
 
-Get current timestamp in milliseconds.
+Get current timestamp (milliseconds).
 
-**Returns:** Number (milliseconds since epoch)
+**Returns:** number - Unix timestamp (milliseconds)
 
 **Example:**
 ```javascript
 const ts = $date.timestamp();
 console.log('Timestamp:', ts);  // 1705329045123
+
+// Calculate execution time
+const startTime = $date.timestamp();
+// ... perform operations
+const endTime = $date.timestamp();
+console.log('Duration:', endTime - startTime, 'ms');
+```
+
+---
+
+## Quantumult X Compatibility Layer
+
+NaviTerm fully supports Quantumult X's `Env` framework, allowing QX scripts to run directly.
+
+### `Env` Constructor
+
+Create Quantumult X-style script environment.
+
+**Usage:**
+```javascript
+const $ = new Env('Script Name');
+```
+
+**Available methods:**
+
+#### `$.log(...args)`
+
+Output log information.
+
+**Example:**
+```javascript
+$.log('Script started');
+$.log('Data:', { count: 42 });
+```
+
+#### `$.wait(ms)`
+
+Delay wait (returns Promise).
+
+**Parameters:**
+- `ms` (number): Milliseconds to wait
+
+**Example:**
+```javascript
+await $.wait(1000);  // Wait 1 second
+```
+
+#### `$.done(value)`
+
+Complete script execution.
+
+**Parameters:**
+- `value` (any, optional): Return value
+
+**Example:**
+```javascript
+$.done({ success: true });
+```
+
+#### `$.getScript(url)` 🌟
+
+Download remote script (with smart caching).
+
+**Parameters:**
+- `url` (string): Script URL
+
+**Returns:** Promise<string>
+
+**🌟 Features:**
+- ✅ Automatically caches downloaded scripts (based on filename)
+- ✅ Automatically ignores SSL certificate validation
+- ✅ Supports HTTPS requests with self-signed certificates
+
+**Example:**
+```javascript
+try {
+    const script = await $.getScript('https://example.com/utils.js');
+    eval(script);  // Execute downloaded script
+    $.log('Script loaded successfully');
+} catch (error) {
+    $.log('Script loading failed:', error);
+}
+```
+
+#### `$.http.get/post/put/delete/head/patch(options, callback)`
+
+HTTP request methods (supports both Promise and callback styles).
+
+**Parameters:**
+- `options` (string | object): URL string or configuration object
+  - `url` (string): Request URL
+  - `method` (string): Request method
+  - `headers` (object): Request headers
+  - `body` (string | object): Request body (objects auto-converted to JSON)
+- `callback` (function, optional): Callback function
+
+**Returns:** Promise (resolve value includes error, status, statusCode, headers, body)
+
+**🌟 Features:**
+- ✅ body supports objects auto-converted to JSON
+- ✅ Automatically sets Content-Type
+- ✅ Automatically ignores SSL certificate validation
+
+**Examples:**
+```javascript
+// Using Promise
+const result = await $.http.get('https://api.example.com/data');
+if (!result.error) {
+    $.log('Status code:', result.status);
+    $.log('Response:', result.body);
+}
+
+// Using callback
+$.http.post({
+    url: 'https://api.example.com/data',
+    body: { key: 'value' }  // Auto-converted to JSON
+}, (error, response, body) => {
+    if (!error) {
+        $.log('Submitted successfully:', body);
+    }
+});
+
+// Simplified syntax (direct URL)
+$.http.get('https://api.example.com/data', (error, response, body) => {
+    $.log(body);
+});
+```
+
+#### `$.notification.post(title, subtitle, body, options)`
+
+Send system notification.
+
+**Example:**
+```javascript
+$.notification.post('Task Complete', 'Data Processing', 'Processed 100 records');
+```
+
+#### `$.read(key)` / `$.write(value, key)` / `$.del(key)`
+
+Persistent storage operations.
+
+**Example:**
+```javascript
+// Write
+$.write(JSON.stringify({ count: 42 }), 'my-data');
+
+// Read
+const data = $.read('my-data');
+if (data) {
+    const obj = JSON.parse(data);
+    $.log('Count:', obj.count);
+}
+
+// Delete
+$.del('my-data');
+```
+
+#### Environment Detection Methods
+
+- `$.isNode()` - Returns false
+- `$.isSurge()` - Returns false
+- `$.isQuanX()` - Returns true
+- `$.isLoon()` - Returns false
+
+**Example:**
+```javascript
+if ($.isQuanX()) {
+    $.log('Running in Quantumult X compatibility mode');
+}
+```
+
+---
+
+### Complete QX Script Example
+
+```javascript
+const $ = new Env('Health Check');
+
+(async () => {
+    $.log('Starting health check...');
+
+    // Download remote utility library (auto-cached)
+    try {
+        const utils = await $.getScript('https://example.com/utils.js');
+        eval(utils);
+    } catch (error) {
+        $.log('Utility library loading failed:', error);
+    }
+
+    // Execute HTTP request
+    const result = await $.http.get({
+        url: 'https://api.example.com/health',
+        headers: {
+            'Authorization': 'Bearer token'
+        }
+    });
+
+    if (!result.error && result.status === 200) {
+        $.log('Health check passed');
+
+        // Save result
+        $.write(result.body, 'last-health-check');
+
+        // Send notification
+        $.notification.post('Health Check', '✅ Passed', '');
+    } else {
+        $.log('Health check failed:', result.error);
+        $.notification.post('Health Check', '❌ Failed', result.error || '');
+    }
+
+    // Complete script
+    $.done();
+})();
 ```
 
 ---
@@ -613,10 +788,7 @@ console.log('Timestamp:', ts);  // 1705329045123
 
 ### `console.log(message)`
 
-Log normal message.
-
-**Parameters:**
-- `message` (string): Log message
+Log normal messages.
 
 **Example:**
 ```javascript
@@ -625,10 +797,7 @@ console.log('[Info] Script started');
 
 ### `console.warn(message)`
 
-Log warning message.
-
-**Parameters:**
-- `message` (string): Warning message
+Log warning messages.
 
 **Example:**
 ```javascript
@@ -637,10 +806,7 @@ console.warn('[Warning] High CPU usage detected');
 
 ### `console.error(message)`
 
-Log error message.
-
-**Parameters:**
-- `message` (string): Error message
+Log error messages.
 
 **Example:**
 ```javascript
@@ -653,10 +819,7 @@ console.error('[Error] Connection failed');
 
 ### `$done(result)`
 
-Finish script execution and return result.
-
-**Parameters:**
-- `result` (string): Result data (usually JSON string)
+Complete script execution and return result.
 
 **Example:**
 ```javascript
@@ -667,6 +830,110 @@ $done(JSON.stringify({
 ```
 
 **Important:** Always call `$done()` at the end of your script, especially for async operations.
+
+---
+
+## Advanced Features
+
+### 🌟 SSL Certificate Auto-Ignore
+
+All HTTP requests in NaviTerm (`$httpClient`, `$task.fetch`, `$.http`) **automatically ignore SSL certificate validation**, allowing access to HTTPS services with self-signed certificates without extra configuration.
+
+**Use cases:**
+- Internal test environment HTTPS APIs
+- Private services with self-signed certificates
+- Development environment HTTPS endpoints
+
+**Example:**
+```javascript
+// Directly access HTTPS service with self-signed certificate, no extra config needed
+$task.fetch({
+    url: 'https://self-signed.example.com/api',
+    method: 'GET'
+})
+.then(response => {
+    console.log('Access successful:', response.body);
+});
+```
+
+---
+
+### 🌟 Smart Request Strategy
+
+`$task.fetch` automatically chooses optimal strategy based on request method:
+
+**GET / HEAD requests:**
+- Uses `downloadTask`
+- Bypasses system resource size limits
+- Suitable for downloading large files or large response bodies
+
+**POST / PUT / DELETE / PATCH requests:**
+- Uses `uploadTask`
+- Full support for request body
+- Suitable for submitting data
+
+---
+
+### 🌟 Smart Script Caching
+
+`Env.getScript(url)` automatically caches downloaded remote scripts:
+
+**Caching strategy:**
+- Generates cache key based on URL's last component (filename)
+- Auto-caches to persistent storage after first download
+- Subsequent calls read directly from cache, no re-download needed
+
+**Example:**
+```javascript
+const $ = new Env('My Script');
+
+// First call downloads and caches
+const cheerio = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
+// Cache key: script_cache_cheerio.min.js
+
+// Second call reads directly from cache, instant return
+const cheerio2 = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
+```
+
+**Clear cache:**
+```javascript
+// Manually delete cache
+$persistentStore.remove('script_cache_cheerio.min.js');
+```
+
+---
+
+### 💡 Runtime Variables vs Persistent Storage
+
+| Feature | `$variables` | `$persistentStore` |
+|---------|--------------|-------------------|
+| Storage Location | Memory | Disk |
+| Lifecycle | Current script execution only | Permanent |
+| Performance | Very fast | Slower (involves I/O) |
+| Use Cases | Temporary state, async operation passing | Configuration, historical data |
+
+**Best practice:**
+```javascript
+// Use runtime variables to pass temporary state
+$variables.set('request_count', '0');
+
+hosts.forEach(host => {
+    checkHost(host, (result) => {
+        let count = parseInt($variables.get('request_count') || '0');
+        count++;
+        $variables.set('request_count', count.toString());
+
+        if (count === hosts.length) {
+            // Save to persistent storage when complete
+            $persistentStore.write(
+                JSON.stringify({ lastCheck: $date.now(), total: count }),
+                'check-history'
+            );
+            $done();
+        }
+    });
+});
+```
 
 ---
 
@@ -684,13 +951,13 @@ $ssh.exec(hostId, command, (result) => {
         $done(JSON.stringify({ error: result.error }));
         return;
     }
-    // Process success case
+    // Handle success case
 });
 ```
 
 ### 2. Async Operations
 
-Track async operations to ensure `$done()` is called correctly:
+Track async operations to ensure proper `$done()` call:
 
 ```javascript
 let completed = 0;
@@ -713,39 +980,14 @@ Use structured logging with prefixes:
 ```javascript
 console.log('[Health Check] Starting...');
 console.warn('[Health Check] High CPU: 95%');
-console.error('[Health Check] Failed to connect');
-```
-
-### 4. Notifications
-
-Send meaningful notifications:
-
-```javascript
-$notification.post(
-    'Server Alert',                    // Clear title
-    'web-server-01',                   // Specific context
-    'CPU: 95%, Memory: 87%',          // Actionable details
-    { url: 'https://monitoring.com' }  // Quick access
-);
-```
-
-### 5. Data Persistence
-
-Use persistent storage for trending:
-
-```javascript
-// Save current value
-const key = `cpu_usage_${$date.format('yyyy-MM-dd')}`;
-const history = JSON.parse($persistentStore.read(key) || '[]');
-history.push({ time: $date.nowSimple(), value: cpuUsage });
-$persistentStore.write(JSON.stringify(history), key);
+console.error('[Health Check] Connection failed');
 ```
 
 ---
 
-## Examples
+## Complete Examples
 
-### Complete SSH Script
+### SSH Script Example
 
 ```javascript
 console.log('[Disk Check] Starting...');
@@ -753,7 +995,7 @@ console.log('[Disk Check] Starting...');
 $ssh.getHosts((hosts) => {
     if (hosts.length === 0) {
         console.error('[Disk Check] No hosts configured');
-        $done(JSON.stringify({ error: 'No hosts' }));
+        $done(JSON.stringify({ error: 'No hosts found' }));
         return;
     }
 
@@ -784,14 +1026,14 @@ $ssh.getHosts((hosts) => {
 });
 ```
 
-### Complete HTTP Script
+### HTTP Script Example
 
 ```javascript
 console.log('[API Check] Starting...');
 
 const endpoints = [
-    'https://api.example.com/health',
-    'https://auth.example.com/status'
+    'https://jsonplaceholder.typicode.com/posts/1',
+    'https://httpbin.org/status/200'
 ];
 
 let results = [];
@@ -816,7 +1058,7 @@ endpoints.forEach(url => {
             if (unhealthy.length > 0) {
                 $notification.post(
                     'API Alert',
-                    `${unhealthy.length} endpoint(s) down`,
+                    `${unhealthy.length} endpoints down`,
                     ''
                 );
             }
@@ -831,10 +1073,51 @@ endpoints.forEach(url => {
 ## Need Help?
 
 - **Quick Start**: [QUICK-START.md](QUICK-START.md)
-- **Examples**: [ADVANCED-EXAMPLES.md](ADVANCED-EXAMPLES.md)
-- **Support**: support@naviterm.com
 - **GitHub**: https://github.com/jc-hk-1916/NaviTerm
 
 ---
 
-**Happy Coding! 🚀**
+## Appendix: Complete API Reference Table
+
+### Standard APIs (Compatible with Surge / Quantumult X / Loon)
+
+| API | Type | Description |
+|-----|------|-------------|
+| `$httpClient.get/post/put/delete/head/patch` | Standard | HTTP client (callback style) |
+| `$task.fetch` | Standard + Enhanced | HTTP client (Promise, with SSL ignore and smart strategy) |
+| `$notification.post` | Standard | System notifications |
+| `$notify` | Standard | Notification shorthand |
+| `$persistentStore.read/write` | Standard | Persistent storage |
+| `$prefs.valueForKey/setValueForKey` | Standard (QX) | Environment variables (QX style) |
+| `$env.get/set/remove` | Standard | Environment variables |
+| `$environment` | Standard | System information |
+| `Env` constructor | Standard (QX) + Enhanced | Quantumult X compatibility layer (with cache optimization) |
+| `$done` | Standard | Script completion |
+| `console.log/warn/error` | Standard | Logging output |
+
+### Extension APIs (NaviTerm Additions)
+
+| API | Description | Advantage |
+|-----|-------------|-----------|
+| `$variables.*` | Runtime temporary variables | Memory-level storage, higher performance |
+| `$date.*` | Date formatting utilities | No manual time format handling needed |
+| `$env.allKeys()` | Get all environment variable keys | Easier traversal and management |
+| `$env.all()` | Get all environment variables as object | Batch access to environment variables |
+| `$persistentStore.allKeys()` | Get all storage keys | Easier traversal and management |
+| `$persistentStore.remove()` | Delete specific key | Precise single data deletion |
+| `$persistentStore.clear()` | Clear all data | Batch cleanup |
+| `$variables.has()` | Check if variable exists | Avoid undefined checks |
+| `$ssh.exec/getHosts` | SSH operations | Direct remote command execution |
+
+### Enhanced Features (Optimized Implementations of Standard APIs)
+
+| Feature | Description | Affected APIs |
+|---------|-------------|--------------|
+| SSL Certificate Auto-Ignore | Automatically ignores certificate validation, supports self-signed certificates | `$task.fetch`, `$.http`, `$.getScript` |
+| Smart Request Strategy | GET/HEAD uses downloadTask to bypass size limits | `$task.fetch` |
+| Smart Script Caching | Automatically caches remote scripts, accelerates second load | `$.getScript` |
+| Auto JSON Serialization | HTTP body supports objects auto-converted to JSON | `$.http.*` |
+
+---
+
+**Happy coding! 🚀**
