@@ -45,14 +45,19 @@ NaviTerm AutoTask 中所有可用 JavaScript API 的完整参考。
 
 **示例：**
 ```javascript
-$ssh.exec('host-123', 'uptime', (result) => {
-    if (result.success) {
-        console.log('运行时间:', result.output);
-    } else {
-        console.error('错误:', result.error);
-    }
+const hostId = "1756948387467";
+
+$ssh.exec(hostId, "echo 'Hello World'", (result) => {
+    console.log("success: " + result.success);
+    console.log("output: " + result.output);
+    console.log("exitCode: " + result.exitCode);
+    console.log("error: " + result.error);
+
+    $notification.post("命令执行完成", `成功: ${result.success}`, "");
+    $done(JSON.stringify(result));
 });
 ```
+
 
 ### `$ssh.getHosts(callback)`
 
@@ -62,10 +67,181 @@ $ssh.exec('host-123', 'uptime', (result) => {
 ```javascript
 $ssh.getHosts((hosts) => {
     console.log(`找到 ${hosts.length} 个主机`);
+
+    if (hosts.length === 0) {
+        console.warn("未配置任何 SSH 主机");
+        $notification.post("SSH 主机列表", "未找到配置的主机", "");
+        $done(JSON.stringify({ success: false, count: 0 }));
+        return;
+    }
+
     hosts.forEach(host => {
         console.log(`- ${host.name} (${host.host})`);
     });
+
+    $notification.post("SSH 主机列表", `找到 ${hosts.length} 个主机`, "");
+    $done(JSON.stringify({ success: true, count: hosts.length, hosts: hosts }));
 });
+```
+
+### `$ssh.connect(hostId, callback)`
+
+连接到指定的 SSH 主机。
+
+**参数：**
+- `hostId` (string)：配置的主机 ID
+- `callback` (function)：带结果的回调函数
+
+**回调签名：**
+```javascript
+(result) => {
+    // result.success (boolean)：连接是否成功
+    // result.error (string)：错误消息（如果失败）
+}
+```
+
+**示例：**
+```javascript
+const hostId = "1756948387467";
+
+$ssh.connect(hostId, (result) => {
+    if (result.success) {
+        console.log(`成功连接到主机: ${hostId}`);
+        $notification.post("SSH 连接成功", `已连接到主机 ${hostId}`, "");
+
+        // 连接成功后执行命令
+        $ssh.exec(hostId, "uptime", (execResult) => {
+            if (execResult.success) {
+                console.log(`系统运行时间: ${execResult.output}`);
+                $notification.post("命令执行成功", execResult.output, "");
+            } else {
+                console.error(`命令执行失败: ${execResult.error}`);
+                $notification.post("命令执行失败", execResult.error, "");
+            }
+            $done(JSON.stringify({ success: execResult.success, output: execResult.output }));
+        });
+    } else {
+        console.error(`连接失败: ${result.error}`);
+        $notification.post("SSH 连接失败", result.error, "");
+        $done(JSON.stringify({ success: false, error: result.error }));
+    }
+});
+```
+
+### `$ssh.disconnect(hostId)`
+
+断开与指定 SSH 主机的连接。
+
+**参数：**
+- `hostId` (string)：配置的主机 ID
+
+**示例：**
+```javascript
+const hostId = "1756948387467";
+
+// 执行完任务后断开连接
+$ssh.exec(hostId, "df -h", (result) => {
+    if (result.success) {
+        console.log("磁盘使用情况: " + result.output);
+        $notification.post("磁盘检查完成", "命令执行成功", "");
+    } else {
+        console.error("命令执行失败: " + result.error);
+        $notification.post("磁盘检查失败", result.error, "");
+    }
+
+    // 断开连接
+    $ssh.disconnect(hostId);
+    console.log(`已断开与主机 ${hostId} 的连接`);
+
+    $done(JSON.stringify({ success: result.success, output: result.output }));
+});
+```
+
+### `$ssh.isConnected(hostId)`
+
+检查与指定 SSH 主机的连接状态。
+
+**参数：**
+- `hostId` (string)：配置的主机 ID
+
+**返回：** boolean - 是否已连接
+
+**示例：**
+```javascript
+const hostId = "1756948387467";
+
+if ($ssh.isConnected(hostId)) {
+    console.log("主机已连接，直接执行命令");
+    $ssh.exec(hostId, "hostname", (result) => {
+        if (result.success) {
+            console.log("主机名: " + result.output);
+            $notification.post("主机名查询成功", result.output, "");
+        } else {
+            console.error("命令执行失败: " + result.error);
+            $notification.post("命令执行失败", result.error, "");
+        }
+        $done(JSON.stringify({ success: result.success, hostname: result.output }));
+    });
+} else {
+    console.log("主机未连接，先建立连接");
+    $ssh.connect(hostId, (result) => {
+        if (result.success) {
+            $ssh.exec(hostId, "hostname", (execResult) => {
+                if (execResult.success) {
+                    console.log("主机名: " + execResult.output);
+                    $notification.post("主机名查询成功", execResult.output, "");
+                } else {
+                    console.error("命令执行失败: " + execResult.error);
+                    $notification.post("命令执行失败", execResult.error, "");
+                }
+                $done(JSON.stringify({ success: execResult.success, hostname: execResult.output }));
+            });
+        } else {
+            console.error("连接失败: " + result.error);
+            $notification.post("SSH 连接失败", result.error, "");
+            $done(JSON.stringify({ success: false, error: result.error }));
+        }
+    });
+}
+```
+
+**完整示例：连接管理最佳实践**
+```javascript
+const hostId = "1756948387467";
+
+// 检查连接状态
+if (!$ssh.isConnected(hostId)) {
+    console.log("建立 SSH 连接...");
+    $ssh.connect(hostId, (connectResult) => {
+        if (!connectResult.success) {
+            console.error("连接失败: " + connectResult.error);
+            $done(JSON.stringify({ error: connectResult.error }));
+            return;
+        }
+
+        console.log("连接成功，执行命令");
+        executeCommands();
+    });
+} else {
+    console.log("已连接，直接执行命令");
+    executeCommands();
+}
+
+function executeCommands() {
+    $ssh.exec(hostId, "uptime && free -h", (result) => {
+        if (result.success) {
+            console.log("系统信息: " + result.output);
+            $notification.post("系统检查完成", "命令执行成功", "");
+        } else {
+            console.error("命令执行失败: " + result.error);
+        }
+
+        // 任务完成后断开连接
+        $ssh.disconnect(hostId);
+        console.log("已断开连接");
+        $done(JSON.stringify({ success: result.success }));
+    });
+}
 ```
 
 ---
@@ -78,13 +254,17 @@ $ssh.getHosts((hosts) => {
 
 **示例：**
 ```javascript
-$httpClient.get('https://api.example.com/data', (error, response, body) => {
+$httpClient.get('https://jsonplaceholder.typicode.com/posts/1', (error, response, body) => {
     if (error) {
         console.error('请求失败:', error);
+        $notification.post('HTTP 请求失败', error, '');
+        $done(JSON.stringify({ error: error }));
         return;
     }
-    console.log('状态:', response.status);
-    console.log('响应:', body);
+    console.log('状态码: ' + response.status);
+    console.log('响应体: ' + body);
+    $notification.post('HTTP 请求成功', `状态码: ${response.status}`, '');
+    $done(JSON.stringify({ status: response.status, body: body }));
 });
 ```
 
@@ -95,14 +275,26 @@ $httpClient.get('https://api.example.com/data', (error, response, body) => {
 **示例：**
 ```javascript
 $httpClient.post({
-    url: 'https://api.example.com/data',
+    url: 'https://jsonplaceholder.typicode.com/posts',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ key: 'value' })
+    body: JSON.stringify({ title: 'foo', body: 'bar', userId: 1 })
 }, (error, response, body) => {
-    if (!error && response.status === 200) {
-        console.log('成功:', body);
+    if (error) {
+        console.error('请求失败: ' + error);
+        $notification.post('POST 请求失败', error, '');
+        $done(JSON.stringify({ error: error }));
+        return;
+    }
+    if (response.status === 201) {
+        console.log('成功: ' + body);
+        $notification.post('POST 请求成功', '数据提交成功', '');
+        $done(JSON.stringify({ success: true, body: body }));
+    } else {
+        console.error('请求失败，状态码: ' + response.status);
+        $notification.post('POST 请求失败', `状态码: ${response.status}`, '');
+        $done(JSON.stringify({ success: false, status: response.status }));
     }
 });
 ```
@@ -149,31 +341,42 @@ Promise 对象，resolve 值包含：
 ```javascript
 // GET 请求
 $task.fetch({
-    url: 'https://api.example.com/data',
+    url: 'https://jsonplaceholder.typicode.com/posts/1',
     method: 'GET',
     headers: {
         'Accept': 'application/json'
     }
 })
 .then(response => {
-    console.log('状态:', response.status);
-    console.log('响应:', response.body);
+    console.log('状态码: ' + response.status);
+    console.log('响应体: ' + response.body);
+    $notification.post('请求成功', `状态码: ${response.status}`, '');
+    $done(JSON.stringify({ status: response.status, body: response.body }));
 })
 .catch(error => {
-    console.error('错误:', error.error);
+    console.error('错误: ' + error.error);
+    $notification.post('请求失败', error.error, '');
+    $done(JSON.stringify({ error: error.error }));
 });
 
 // POST 请求
 $task.fetch({
-    url: 'https://api.example.com/data',
+    url: 'https://jsonplaceholder.typicode.com/posts',
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ key: 'value' })
+    body: JSON.stringify({ title: 'foo', body: 'bar', userId: 1 })
 })
 .then(response => {
-    console.log('提交成功:', response.body);
+    console.log('提交成功: ' + response.body);
+    $notification.post('提交成功', '数据已保存', '');
+    $done(JSON.stringify({ success: true, body: response.body }));
+})
+.catch(error => {
+    console.error('提交失败: ' + error.error);
+    $notification.post('提交失败', error.error, '');
+    $done(JSON.stringify({ error: error.error }));
 });
 ```
 
@@ -247,7 +450,7 @@ $persistentStore.write(data, 'my-data');
 const data = $persistentStore.read('my-data');
 if (data) {
     const obj = JSON.parse(data);
-    console.log('计数:', obj.count);
+    console.log('计数:'+ obj.count);
 }
 ```
 
@@ -260,7 +463,7 @@ if (data) {
 **示例：**
 ```javascript
 const keys = $persistentStore.allKeys();
-console.log('所有键:', keys);
+console.log('所有键:'+ keys);
 ```
 
 ### `$persistentStore.remove(key)`
@@ -320,7 +523,7 @@ $variables.set('counter', '10');
 **示例：**
 ```javascript
 const counter = $variables.get('counter');
-console.log('计数器:', counter);
+console.log('计数器:'+ counter);
 ```
 
 ### `$variables.allKeys()`
@@ -332,7 +535,7 @@ console.log('计数器:', counter);
 **示例：**
 ```javascript
 const keys = $variables.allKeys();
-console.log('所有运行时变量:', keys);
+console.log('所有运行时变量:'+ keys);
 ```
 
 ### `$variables.remove(key)`
@@ -398,7 +601,7 @@ if ($variables.has('counter')) {
 **示例：**
 ```javascript
 const apiKey = $env.get('API_KEY', 'default-key');
-console.log('API Key:', apiKey);
+console.log('API Key:'+ apiKey);
 ```
 
 ### `$env.set(key, value)`
@@ -427,7 +630,7 @@ $env.set('API_KEY', 'your-secret-key');
 
 **示例：**
 ```javascript
-$env.remove('OLD_CONFIG');
+$env.remove('API_KEY');
 ```
 
 ### `$env.allKeys()` 🆕
@@ -439,7 +642,7 @@ $env.remove('OLD_CONFIG');
 **示例：**
 ```javascript
 const keys = $env.allKeys();
-console.log('所有环境变量:', keys);
+console.log('所有环境变量:'+ keys);
 ```
 
 ### `$env.all()` 🆕
@@ -451,7 +654,7 @@ console.log('所有环境变量:', keys);
 **示例：**
 ```javascript
 const allEnvVars = $env.all();
-console.log('所有环境变量:', JSON.stringify(allEnvVars));
+console.log('所有环境变量:'+ JSON.stringify(allEnvVars));
 ```
 
 ---
@@ -473,7 +676,7 @@ $prefs.setValueForKey('my-value', 'MY_KEY');
 
 // 获取
 const value = $prefs.valueForKey('MY_KEY');
-console.log('值:', value);
+console.log('值:'+ value);
 
 // 删除
 $prefs.removeValueForKey('MY_KEY');
@@ -493,10 +696,10 @@ $prefs.removeValueForKey('MY_KEY');
 
 **示例：**
 ```javascript
-console.log('系统:', $environment.system);      // "iOS" 或 "macOS"
-console.log('版本:', $environment.version);     // 应用版本
-console.log('语言:', $environment.language);    // 系统语言
-console.log('设备:', $environment.deviceName);  // 设备名称
+console.log('系统:'+ $environment.system);      // "iOS" 或 "macOS"
+console.log('版本:'+ $environment.version);     // 应用版本
+console.log('语言:'+ $environment.language);    // 系统语言
+console.log('设备:'+ $environment.deviceName);  // 设备名称
 ```
 
 ---
@@ -510,7 +713,7 @@ console.log('设备:', $environment.deviceName);  // 设备名称
 **示例：**
 ```javascript
 const now = $date.now();
-console.log('现在:', now);  // "2024-01-15 14:30:45.123"
+console.log('现在:'+ now);  // "2024-01-15 14:30:45.123"
 ```
 
 ### `$date.nowSimple()`
@@ -520,7 +723,7 @@ console.log('现在:', now);  // "2024-01-15 14:30:45.123"
 **示例：**
 ```javascript
 const now = $date.nowSimple();
-console.log('现在:', now);  // "2024-01-15 14:30:45"
+console.log('现在:'+ now);  // "2024-01-15 14:30:45"
 ```
 
 ### `$date.format(formatString)`
@@ -530,7 +733,7 @@ console.log('现在:', now);  // "2024-01-15 14:30:45"
 **示例：**
 ```javascript
 const date = $date.format('yyyy-MM-dd');
-console.log('日期:', date);  // "2024-01-15"
+console.log('日期:'+ date);  // "2024-01-15"
 ```
 
 ### `$date.timestamp()`
@@ -540,7 +743,7 @@ console.log('日期:', date);  // "2024-01-15"
 **示例：**
 ```javascript
 const ts = $date.timestamp();
-console.log('时间戳:', ts);  // 1705329045123
+console.log('时间戳:'+ ts);  // 1705329045123
 ```
 
 ---
@@ -579,7 +782,14 @@ $.log('数据:', { count: 42 });
 
 **示例：**
 ```javascript
-await $.wait(1000);  // 等待 1 秒
+// 必须在 async 函数中使用 await
+(async () => {
+    const $ = new Env('延迟示例');
+    $.log('开始等待...');
+    await $.wait(1000);  // 等待 1 秒
+    $.log('等待完成');
+    $.done({ success: true });
+})();
 ```
 
 #### `$.done(value)`
@@ -610,13 +820,20 @@ $.done({ success: true });
 
 **示例：**
 ```javascript
-try {
-    const script = await $.getScript('https://example.com/utils.js');
-    eval(script);  // 执行下载的脚本
-    $.log('脚本加载成功');
-} catch (error) {
-    $.log('脚本加载失败:', error);
-}
+(async () => {
+    const $ = new Env('脚本加载示例');
+
+    try {
+        const script = await $.getScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js');
+        eval(script);  // 执行下载的脚本
+        $.log('脚本加载成功');
+        $.log('Lodash 版本: ' + _.VERSION);
+        $.done({ success: true });
+    } catch (error) {
+        $.log('脚本加载失败: ' + error);
+        $.done({ success: false, error: error });
+    }
+})();
 ```
 
 #### `$.http.get/post/put/delete/head/patch(options, callback)`
@@ -641,25 +858,50 @@ HTTP 请求方法（支持 Promise 和回调两种方式）。
 **示例：**
 ```javascript
 // 使用 Promise
-const result = await $.http.get('https://api.example.com/data');
-if (!result.error) {
-    $.log('状态码:', result.status);
-    $.log('响应:', result.body);
-}
+(async () => {
+    const $ = new Env('HTTP 请求示例');
+
+    const result = await $.http.get('https://jsonplaceholder.typicode.com/posts/1');
+    if (!result.error) {
+        $.log('状态码: ' + result.status);
+        $.log('响应: ' + result.body);
+        $.notification.post('请求成功', `状态码: ${result.status}`, '');
+        $.done({ success: true, data: result.body });
+    } else {
+        $.log('请求失败: ' + result.error);
+        $.notification.post('请求失败', result.error, '');
+        $.done({ success: false, error: result.error });
+    }
+})();
 
 // 使用回调
+const $ = new Env('HTTP POST 示例');
 $.http.post({
-    url: 'https://api.example.com/data',
-    body: { key: 'value' }  // 自动转 JSON
+    url: 'https://jsonplaceholder.typicode.com/posts',
+    body: { title: 'foo', body: 'bar', userId: 1 }  // 自动转 JSON
 }, (error, response, body) => {
     if (!error) {
-        $.log('提交成功:', body);
+        $.log('提交成功: ' + body);
+        $.notification.post('提交成功', '数据已保存', '');
+        $.done({ success: true, body: body });
+    } else {
+        $.log('提交失败: ' + error);
+        $.notification.post('提交失败', error, '');
+        $.done({ success: false, error: error });
     }
 });
 
 // 简化写法（直接传 URL）
-$.http.get('https://api.example.com/data', (error, response, body) => {
-    $.log(body);
+const $2 = new Env('HTTP GET 简化示例');
+$2.http.get('https://jsonplaceholder.typicode.com/posts/1', (error, response, body) => {
+    if (!error) {
+        $2.log('响应: ' + body);
+        $2.notification.post('获取成功', '数据已获取', '');
+    } else {
+        $2.log('获取失败: ' + error);
+        $2.notification.post('获取失败', error, '');
+    }
+    $2.done({ error: error, body: body });
 });
 ```
 
@@ -669,7 +911,9 @@ $.http.get('https://api.example.com/data', (error, response, body) => {
 
 **示例：**
 ```javascript
+const $ = new Env('通知示例');
 $.notification.post('任务完成', '数据处理', '已处理 100 条记录');
+$.done();
 ```
 
 #### `$.read(key)` / `$.write(value, key)` / `$.del(key)`
@@ -678,6 +922,8 @@ $.notification.post('任务完成', '数据处理', '已处理 100 条记录');
 
 **示例：**
 ```javascript
+const $ = new Env('存储示例');
+
 // 写入
 $.write(JSON.stringify({ count: 42 }), 'my-data');
 
@@ -685,11 +931,12 @@ $.write(JSON.stringify({ count: 42 }), 'my-data');
 const data = $.read('my-data');
 if (data) {
     const obj = JSON.parse(data);
-    $.log('计数:', obj.count);
+    $.log('计数: ' + obj.count);
 }
 
 // 删除
 $.del('my-data');
+$.done();
 ```
 
 #### 环境判断方法
@@ -701,9 +948,11 @@ $.del('my-data');
 
 **示例：**
 ```javascript
+const $ = new Env('环境检测');
 if ($.isQuanX()) {
     $.log('运行在 Quantumult X 兼容模式');
 }
+$.done();
 ```
 
 ---
@@ -718,17 +967,18 @@ const $ = new Env('健康检查');
 
     // 下载远程工具库（自动缓存）
     try {
-        const utils = await $.getScript('https://example.com/utils.js');
+        const utils = await $.getScript('https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js');
         eval(utils);
+        $.log('工具库加载成功');
     } catch (error) {
-        $.log('工具库加载失败:', error);
+        $.log('工具库加载失败: ' + error);
     }
 
     // 执行 HTTP 请求
     const result = await $.http.get({
-        url: 'https://api.example.com/health',
+        url: 'https://jsonplaceholder.typicode.com/posts/1',
         headers: {
-            'Authorization': 'Bearer token'
+            'Accept': 'application/json'
         }
     });
 
@@ -741,7 +991,7 @@ const $ = new Env('健康检查');
         // 发送通知
         $.notification.post('健康检查', '✅ 通过', '');
     } else {
-        $.log('健康检查失败:', result.error);
+        $.log('健康检查失败: ' + result.error);
         $.notification.post('健康检查', '❌ 失败', result.error || '');
     }
 
@@ -820,7 +1070,7 @@ $task.fetch({
     method: 'GET'
 })
 .then(response => {
-    console.log('访问成功:', response.body);
+    console.log('访问成功:'+ response.body);
 });
 ```
 
@@ -853,14 +1103,19 @@ $task.fetch({
 
 **示例：**
 ```javascript
-const $ = new Env('我的脚本');
+(async () => {
+    const $ = new Env('我的脚本');
 
-// 首次调用会下载并缓存
-const cheerio = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
-// 缓存键: script_cache_cheerio.min.js
+    // 首次调用会下载并缓存
+    const cheerio = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
+    // 缓存键: script_cache_cheerio.min.js
 
-// 再次调用直接从缓存读取,瞬间返回
-const cheerio2 = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
+    // 再次调用直接从缓存读取,瞬间返回
+    const cheerio2 = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
+
+    $.log('脚本缓存演示完成');
+    $.done();
+})();
 ```
 
 **清除缓存：**
@@ -883,20 +1138,49 @@ $persistentStore.remove('script_cache_cheerio.min.js');
 **最佳实践：**
 ```javascript
 // 使用运行时变量传递临时状态
-$variables.set('request_count', '0');
+// 定义要检查的 API 端点列表
+const endpoints = [
+    'https://jsonplaceholder.typicode.com/posts/1',
+    'https://jsonplaceholder.typicode.com/posts/2',
+    'https://jsonplaceholder.typicode.com/posts/3'
+];
 
-hosts.forEach(host => {
-    checkHost(host, (result) => {
+// 初始化计数器
+$variables.set('request_count', '0');
+$variables.set('success_count', '0');
+
+// 检查每个端点
+endpoints.forEach(url => {
+    $httpClient.get(url, (error, response, body) => {
+        // 更新请求计数
         let count = parseInt($variables.get('request_count') || '0');
         count++;
         $variables.set('request_count', count.toString());
 
-        if (count === hosts.length) {
-            // 完成后保存到持久化存储
+        // 更新成功计数
+        if (!error && response.status === 200) {
+            let successCount = parseInt($variables.get('success_count') || '0');
+            successCount++;
+            $variables.set('success_count', successCount.toString());
+        }
+
+        // 所有请求完成后保存结果
+        if (count === endpoints.length) {
+            const successCount = parseInt($variables.get('success_count') || '0');
+
+            // 保存到持久化存储
             $persistentStore.write(
-                JSON.stringify({ lastCheck: $date.now(), total: count }),
+                JSON.stringify({
+                    lastCheck: $date.now(),
+                    total: count,
+                    success: successCount,
+                    failureRate: ((count - successCount) / count * 100).toFixed(2) + '%'
+                }),
                 'check-history'
             );
+
+            console.log('检查完成: ' + successCount + '/' + count + ' 成功');
+            $notification.post('健康检查完成', successCount + '/' + count + ' 端点正常', '');
             $done();
         }
     });
@@ -905,138 +1189,7 @@ hosts.forEach(host => {
 
 ---
 
-## 最佳实践
 
-### 1. 错误处理
-
-始终在回调中处理错误：
-
-```javascript
-$ssh.exec(hostId, command, (result) => {
-    if (!result.success) {
-        console.error('命令失败:', result.error);
-        $notification.post('错误', result.error, '');
-        $done(JSON.stringify({ error: result.error }));
-        return;
-    }
-    // 处理成功情况
-});
-```
-
-### 2. 异步操作
-
-跟踪异步操作以确保正确调用 `$done()`：
-
-```javascript
-let completed = 0;
-const total = hosts.length;
-
-hosts.forEach(host => {
-    checkHost(host, (result) => {
-        completed++;
-        if (completed === total) {
-            $done(JSON.stringify({ results }));
-        }
-    });
-});
-```
-
-### 3. 日志记录
-
-使用带前缀的结构化日志：
-
-```javascript
-console.log('[健康检查] 正在启动...');
-console.warn('[健康检查] 高 CPU: 95%');
-console.error('[健康检查] 连接失败');
-```
-
----
-
-## 完整示例
-
-### SSH 脚本示例
-
-```javascript
-console.log('[磁盘检查] 正在启动...');
-
-$ssh.getHosts((hosts) => {
-    if (hosts.length === 0) {
-        console.error('[磁盘检查] 未配置主机');
-        $done(JSON.stringify({ error: '未找到主机' }));
-        return;
-    }
-
-    let results = [];
-    let completed = 0;
-
-    hosts.forEach(host => {
-        $ssh.exec(host.id, "df -h / | tail -1 | awk '{print $5}'", (result) => {
-            if (result.success) {
-                const usage = parseInt(result.output.trim());
-                results.push({ host: host.name, usage });
-
-                if (usage > 90) {
-                    $notification.post(
-                        '磁盘告警',
-                        host.name,
-                        `磁盘使用率: ${usage}%`
-                    );
-                }
-            }
-
-            completed++;
-            if (completed === hosts.length) {
-                $done(JSON.stringify({ results }));
-            }
-        });
-    });
-});
-```
-
-### HTTP 脚本示例
-
-```javascript
-console.log('[API 检查] 正在启动...');
-
-const endpoints = [
-    'https://jsonplaceholder.typicode.com/posts/1',
-    'https://httpbin.org/status/200'
-];
-
-let results = [];
-let completed = 0;
-
-endpoints.forEach(url => {
-    const startTime = $date.timestamp();
-
-    $httpClient.get(url, (error, response, body) => {
-        const endTime = $date.timestamp();
-        const responseTime = endTime - startTime;
-
-        results.push({
-            url,
-            healthy: !error && response.status === 200,
-            responseTime
-        });
-
-        completed++;
-        if (completed === endpoints.length) {
-            const unhealthy = results.filter(r => !r.healthy);
-            if (unhealthy.length > 0) {
-                $notification.post(
-                    'API 告警',
-                    `${unhealthy.length} 个端点故障`,
-                    ''
-                );
-            }
-            $done(JSON.stringify({ results }));
-        }
-    });
-});
-```
-
----
 
 ## 需要帮助？
 

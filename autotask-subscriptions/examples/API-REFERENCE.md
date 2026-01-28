@@ -43,12 +43,16 @@ Execute SSH command on a remote host.
 
 **Example:**
 ```javascript
-$ssh.exec('host-123', 'uptime', (result) => {
-    if (result.success) {
-        console.log('Uptime:', result.output);
-    } else {
-        console.error('Error:', result.error);
-    }
+const hostId = "1756948387467";
+
+$ssh.exec(hostId, "echo 'Hello World'", (result) => {
+    console.log("success: " + result.success);
+    console.log("output: " + result.output);
+    console.log("exitCode: " + result.exitCode);
+    console.log("error: " + result.error);
+
+    $notification.post("Command Complete", `Success: ${result.success}`, "");
+    $done(JSON.stringify(result));
 });
 ```
 
@@ -60,10 +64,181 @@ Get all configured SSH hosts.
 ```javascript
 $ssh.getHosts((hosts) => {
     console.log(`Found ${hosts.length} hosts`);
+
+    if (hosts.length === 0) {
+        console.warn("No SSH hosts configured");
+        $notification.post("SSH Host List", "No configured hosts found", "");
+        $done(JSON.stringify({ success: false, count: 0 }));
+        return;
+    }
+
     hosts.forEach(host => {
         console.log(`- ${host.name} (${host.host})`);
     });
+
+    $notification.post("SSH Host List", `Found ${hosts.length} hosts`, "");
+    $done(JSON.stringify({ success: true, count: hosts.length, hosts: hosts }));
 });
+```
+
+### `$ssh.connect(hostId, callback)`
+
+Connect to a specified SSH host.
+
+**Parameters:**
+- `hostId` (string): Host ID from configured hosts
+- `callback` (function): Callback function with result
+
+**Callback signature:**
+```javascript
+(result) => {
+    // result.success (boolean): Connection status
+    // result.error (string): Error message (if failed)
+}
+```
+
+**Example:**
+```javascript
+const hostId = "1756948387467";
+
+$ssh.connect(hostId, (result) => {
+    if (result.success) {
+        console.log(`Successfully connected to host: ${hostId}`);
+        $notification.post("SSH Connection Success", `Connected to host ${hostId}`, "");
+
+        // Execute command after connection
+        $ssh.exec(hostId, "uptime", (execResult) => {
+            if (execResult.success) {
+                console.log(`System uptime: ${execResult.output}`);
+                $notification.post("Command Executed", execResult.output, "");
+            } else {
+                console.error(`Command execution failed: ${execResult.error}`);
+                $notification.post("Command Failed", execResult.error, "");
+            }
+            $done(JSON.stringify({ success: execResult.success, output: execResult.output }));
+        });
+    } else {
+        console.error(`Connection failed: ${result.error}`);
+        $notification.post("SSH Connection Failed", result.error, "");
+        $done(JSON.stringify({ success: false, error: result.error }));
+    }
+});
+```
+
+### `$ssh.disconnect(hostId)`
+
+Disconnect from a specified SSH host.
+
+**Parameters:**
+- `hostId` (string): Host ID from configured hosts
+
+**Example:**
+```javascript
+const hostId = "1756948387467";
+
+// Disconnect after task completion
+$ssh.exec(hostId, "df -h", (result) => {
+    if (result.success) {
+        console.log("Disk usage: " + result.output);
+        $notification.post("Disk Check Complete", "Command executed successfully", "");
+    } else {
+        console.error("Command execution failed: " + result.error);
+        $notification.post("Disk Check Failed", result.error, "");
+    }
+
+    // Disconnect
+    $ssh.disconnect(hostId);
+    console.log(`Disconnected from host ${hostId}`);
+
+    $done(JSON.stringify({ success: result.success, output: result.output }));
+});
+```
+
+### `$ssh.isConnected(hostId)`
+
+Check connection status with a specified SSH host.
+
+**Parameters:**
+- `hostId` (string): Host ID from configured hosts
+
+**Returns:** boolean - Whether connected
+
+**Example:**
+```javascript
+const hostId = "1756948387467";
+
+if ($ssh.isConnected(hostId)) {
+    console.log("Host already connected, executing command directly");
+    $ssh.exec(hostId, "hostname", (result) => {
+        if (result.success) {
+            console.log("Hostname: " + result.output);
+            $notification.post("Hostname Query Success", result.output, "");
+        } else {
+            console.error("Command execution failed: " + result.error);
+            $notification.post("Command Failed", result.error, "");
+        }
+        $done(JSON.stringify({ success: result.success, hostname: result.output }));
+    });
+} else {
+    console.log("Host not connected, establishing connection");
+    $ssh.connect(hostId, (result) => {
+        if (result.success) {
+            $ssh.exec(hostId, "hostname", (execResult) => {
+                if (execResult.success) {
+                    console.log("Hostname: " + execResult.output);
+                    $notification.post("Hostname Query Success", execResult.output, "");
+                } else {
+                    console.error("Command execution failed:", execResult.error);
+                    $notification.post("Command Failed", execResult.error, "");
+                }
+                $done(JSON.stringify({ success: execResult.success, hostname: execResult.output }));
+            });
+        } else {
+            console.error("Connection failed:", result.error);
+            $notification.post("SSH Connection Failed", result.error, "");
+            $done(JSON.stringify({ success: false, error: result.error }));
+        }
+    });
+}
+```
+
+**Complete example: Connection management best practices**
+```javascript
+const hostId = "1756948387467";
+
+// Check connection status
+if (!$ssh.isConnected(hostId)) {
+    console.log("Establishing SSH connection...");
+    $ssh.connect(hostId, (connectResult) => {
+        if (!connectResult.success) {
+            console.error("Connection failed:", connectResult.error);
+            $done(JSON.stringify({ error: connectResult.error }));
+            return;
+        }
+
+        console.log("Connection successful, executing commands");
+        executeCommands();
+    });
+} else {
+    console.log("Already connected, executing commands directly");
+    executeCommands();
+}
+
+function executeCommands() {
+    $ssh.exec(hostId, "uptime && free -h", (result) => {
+        if (result.success) {
+            console.log("System info: " + result.output);
+            $notification.post("System Check Complete", "Command executed successfully", "");
+        } else {
+            console.error("Command execution failed: " + result.error);
+        }
+
+        // Disconnect after task completion
+        $ssh.disconnect(hostId);
+        console.log("Disconnected");
+        $done(JSON.stringify({ success: result.success }));
+    });
+}
 ```
 
 ---
@@ -76,13 +251,17 @@ Send HTTP GET request.
 
 **Example:**
 ```javascript
-$httpClient.get('https://api.example.com/data', (error, response, body) => {
+$httpClient.get('https://jsonplaceholder.typicode.com/posts/1', (error, response, body) => {
     if (error) {
         console.error('Request failed:', error);
+        $notification.post('HTTP Request Failed', error, '');
+        $done(JSON.stringify({ error: error }));
         return;
     }
-    console.log('Status:', response.status);
-    console.log('Response:', body);
+    console.log('Status: ' + response.status);
+    console.log('Response: ' + body);
+    $notification.post('HTTP Request Success', `Status: ${response.status}`, '');
+    $done(JSON.stringify({ status: response.status, body: body }));
 });
 ```
 
@@ -93,14 +272,26 @@ Send HTTP POST request.
 **Example:**
 ```javascript
 $httpClient.post({
-    url: 'https://api.example.com/data',
+    url: 'https://jsonplaceholder.typicode.com/posts',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ key: 'value' })
+    body: JSON.stringify({ title: 'foo', body: 'bar', userId: 1 })
 }, (error, response, body) => {
-    if (!error && response.status === 200) {
-        console.log('Success:', body);
+    if (error) {
+        console.error('Request failed:', error);
+        $notification.post('POST Request Failed', error, '');
+        $done(JSON.stringify({ error: error }));
+        return;
+    }
+    if (response.status === 201) {
+        console.log('Success: ' + body);
+        $notification.post('POST Request Success', 'Data submitted successfully', '');
+        $done(JSON.stringify({ success: true, body: body }));
+    } else {
+        console.error('Request failed, status:', response.status);
+        $notification.post('POST Request Failed', `Status: ${response.status}`, '');
+        $done(JSON.stringify({ success: false, status: response.status }));
     }
 });
 ```
@@ -147,31 +338,42 @@ Promise object, resolve value includes:
 ```javascript
 // GET request
 $task.fetch({
-    url: 'https://api.example.com/data',
+    url: 'https://jsonplaceholder.typicode.com/posts/1',
     method: 'GET',
     headers: {
         'Accept': 'application/json'
     }
 })
 .then(response => {
-    console.log('Status:', response.status);
-    console.log('Response:', response.body);
+    console.log('Status:'+ response.status);
+    console.log('Response:'+ response.body);
+    $notification.post('Request Success', `Status: ${response.status}`, '');
+    $done(JSON.stringify({ status: response.status, body: response.body }));
 })
 .catch(error => {
     console.error('Error:', error.error);
+    $notification.post('Request Failed', error.error, '');
+    $done(JSON.stringify({ error: error.error }));
 });
 
 // POST request
 $task.fetch({
-    url: 'https://api.example.com/data',
+    url: 'https://jsonplaceholder.typicode.com/posts',
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ key: 'value' })
+    body: JSON.stringify({ title: 'foo', body: 'bar', userId: 1 })
 })
 .then(response => {
-    console.log('Submitted successfully:', response.body);
+    console.log('Submitted successfully:'+ response.body);
+    $notification.post('Submit Success', 'Data saved', '');
+    $done(JSON.stringify({ success: true, body: response.body }));
+})
+.catch(error => {
+    console.error('Submit failed:', error.error);
+    $notification.post('Submit Failed', error.error, '');
+    $done(JSON.stringify({ error: error.error }));
 });
 ```
 
@@ -245,7 +447,7 @@ Read saved data.
 const data = $persistentStore.read('my-data');
 if (data) {
     const obj = JSON.parse(data);
-    console.log('Count:', obj.count);
+    console.log('Count:'+obj.count);
 }
 ```
 
@@ -258,7 +460,7 @@ Get all storage keys.
 **Example:**
 ```javascript
 const keys = $persistentStore.allKeys();
-console.log('All keys:', keys);
+console.log('All keys:'+ keys);
 ```
 
 ### `$persistentStore.remove(key)`
@@ -318,7 +520,7 @@ Get a runtime variable.
 **Example:**
 ```javascript
 const counter = $variables.get('counter');
-console.log('Counter:', counter);
+console.log('Counter:'+ counter);
 ```
 
 ### `$variables.allKeys()`
@@ -330,7 +532,7 @@ Get all runtime variable keys.
 **Example:**
 ```javascript
 const keys = $variables.allKeys();
-console.log('All runtime variables:', keys);
+console.log('All runtime variables:'+ keys);
 ```
 
 ### `$variables.remove(key)`
@@ -396,7 +598,7 @@ Get environment variable (supports default value).
 **Example:**
 ```javascript
 const apiKey = $env.get('API_KEY', 'default-key');
-console.log('API Key:', apiKey);
+console.log('API Key:'+ apiKey);
 ```
 
 ### `$env.set(key, value)`
@@ -425,7 +627,7 @@ Delete environment variable.
 
 **Example:**
 ```javascript
-$env.remove('OLD_CONFIG');
+$env.remove('API_KEY');
 ```
 
 ### `$env.allKeys()` 🆕
@@ -437,7 +639,7 @@ Get all environment variable keys (extension method).
 **Example:**
 ```javascript
 const keys = $env.allKeys();
-console.log('All environment variables:', keys);
+console.log('All environment variables:'+ keys);
 ```
 
 ### `$env.all()` 🆕
@@ -449,7 +651,7 @@ Get all environment variables as key-value pairs (extension method).
 **Example:**
 ```javascript
 const allEnvVars = $env.all();
-console.log('All environment variables:', JSON.stringify(allEnvVars));
+console.log('All environment variables:'+ JSON.stringify(allEnvVars));
 ```
 
 ---
@@ -471,7 +673,7 @@ $prefs.setValueForKey('my-value', 'MY_KEY');
 
 // Get
 const value = $prefs.valueForKey('MY_KEY');
-console.log('Value:', value);
+console.log('Value:'+ value);
 
 // Delete
 $prefs.removeValueForKey('MY_KEY');
@@ -491,10 +693,10 @@ Read-only system information object.
 
 **Example:**
 ```javascript
-console.log('System:', $environment.system);      // "iOS" or "macOS"
-console.log('Version:', $environment.version);     // App version
-console.log('Language:', $environment.language);   // System language
-console.log('Device:', $environment.deviceName);   // Device name
+console.log('System:'+ $environment.system);      // "iOS" or "macOS"
+console.log('Version:'+ $environment.version);     // App version
+console.log('Language:'+ $environment.language);   // System language
+console.log('Device:'+ $environment.deviceName);   // Device name
 ```
 
 ---
@@ -512,7 +714,7 @@ Get current date/time (with milliseconds).
 **Example:**
 ```javascript
 const now = $date.now();
-console.log('Now:', now);  // "2024-01-15 14:30:45.123"
+console.log('Now:'+ now);  // "2024-01-15 14:30:45.123"
 ```
 
 ### `$date.nowSimple()`
@@ -524,7 +726,7 @@ Get current date/time (without milliseconds).
 **Example:**
 ```javascript
 const now = $date.nowSimple();
-console.log('Now:', now);  // "2024-01-15 14:30:45"
+console.log('Now:'+ now);  // "2024-01-15 14:30:45"
 ```
 
 ### `$date.format(formatString)`
@@ -548,13 +750,13 @@ Format current date/time with custom format.
 **Examples:**
 ```javascript
 const date = $date.format('yyyy-MM-dd');
-console.log('Date:', date);  // "2024-01-15"
+console.log('Date:'+ date);  // "2024-01-15"
 
 const time = $date.format('HH:mm:ss');
-console.log('Time:', time);  // "14:30:45"
+console.log('Time:'+ time);  // "14:30:45"
 
 const custom = $date.format('yyyy/MM/dd HH:mm');
-console.log('Custom:', custom);  // "2024/01/15 14:30"
+console.log('Custom:'+ custom);  // "2024/01/15 14:30"
 ```
 
 ### `$date.timestamp()`
@@ -566,13 +768,13 @@ Get current timestamp (milliseconds).
 **Example:**
 ```javascript
 const ts = $date.timestamp();
-console.log('Timestamp:', ts);  // 1705329045123
+console.log('Timestamp:'+ ts);  // 1705329045123
 
 // Calculate execution time
 const startTime = $date.timestamp();
 // ... perform operations
 const endTime = $date.timestamp();
-console.log('Duration:', endTime - startTime, 'ms');
+console.log('Duration:'+ endTime - startTime + 'ms');
 ```
 
 ---
@@ -611,7 +813,14 @@ Delay wait (returns Promise).
 
 **Example:**
 ```javascript
-await $.wait(1000);  // Wait 1 second
+// Must use await inside an async function
+(async () => {
+    const $ = new Env('Delay Example');
+    $.log('Starting wait...');
+    await $.wait(1000);  // Wait 1 second
+    $.log('Wait complete');
+    $.done({ success: true });
+})();
 ```
 
 #### `$.done(value)`
@@ -642,13 +851,20 @@ Download remote script (with smart caching).
 
 **Example:**
 ```javascript
-try {
-    const script = await $.getScript('https://example.com/utils.js');
-    eval(script);  // Execute downloaded script
-    $.log('Script loaded successfully');
-} catch (error) {
-    $.log('Script loading failed:', error);
-}
+(async () => {
+    const $ = new Env('Script Loading Example');
+
+    try {
+        const script = await $.getScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js');
+        eval(script);  // Execute downloaded script
+        $.log('Script loaded successfully');
+        $.log('Lodash version: ' + _.VERSION);
+        $.done({ success: true });
+    } catch (error) {
+        $.log('Script loading failed: ' + error);
+        $.done({ success: false, error: error });
+    }
+})();
 ```
 
 #### `$.http.get/post/put/delete/head/patch(options, callback)`
@@ -673,25 +889,50 @@ HTTP request methods (supports both Promise and callback styles).
 **Examples:**
 ```javascript
 // Using Promise
-const result = await $.http.get('https://api.example.com/data');
-if (!result.error) {
-    $.log('Status code:', result.status);
-    $.log('Response:', result.body);
-}
+(async () => {
+    const $ = new Env('HTTP Request Example');
+
+    const result = await $.http.get('https://jsonplaceholder.typicode.com/posts/1');
+    if (!result.error) {
+        $.log('Status code: ' + result.status);
+        $.log('Response: ' + result.body);
+        $.notification.post('Request Success', `Status: ${result.status}`, '');
+        $.done({ success: true, data: result.body });
+    } else {
+        $.log('Request failed: ' + result.error);
+        $.notification.post('Request Failed', result.error, '');
+        $.done({ success: false, error: result.error });
+    }
+})();
 
 // Using callback
+const $ = new Env('HTTP POST Example');
 $.http.post({
-    url: 'https://api.example.com/data',
-    body: { key: 'value' }  // Auto-converted to JSON
+    url: 'https://jsonplaceholder.typicode.com/posts',
+    body: { title: 'foo', body: 'bar', userId: 1 }  // Auto-converted to JSON
 }, (error, response, body) => {
     if (!error) {
-        $.log('Submitted successfully:', body);
+        $.log('Submitted successfully: ' + body);
+        $.notification.post('Submit Success', 'Data saved', '');
+        $.done({ success: true, body: body });
+    } else {
+        $.log('Submit failed: ' + error);
+        $.notification.post('Submit Failed', error, '');
+        $.done({ success: false, error: error });
     }
 });
 
 // Simplified syntax (direct URL)
-$.http.get('https://api.example.com/data', (error, response, body) => {
-    $.log(body);
+const $2 = new Env('HTTP GET Simplified Example');
+$2.http.get('https://jsonplaceholder.typicode.com/posts/1', (error, response, body) => {
+    if (!error) {
+        $2.log('Response: ' + body);
+        $2.notification.post('Data Retrieved', 'Success', '');
+    } else {
+        $2.log('Retrieval failed: ' + error);
+        $2.notification.post('Retrieval Failed', error, '');
+    }
+    $2.done({ error: error, body: body });
 });
 ```
 
@@ -701,7 +942,9 @@ Send system notification.
 
 **Example:**
 ```javascript
+const $ = new Env('Notification Example');
 $.notification.post('Task Complete', 'Data Processing', 'Processed 100 records');
+$.done();
 ```
 
 #### `$.read(key)` / `$.write(value, key)` / `$.del(key)`
@@ -710,6 +953,8 @@ Persistent storage operations.
 
 **Example:**
 ```javascript
+const $ = new Env('Storage Example');
+
 // Write
 $.write(JSON.stringify({ count: 42 }), 'my-data');
 
@@ -717,11 +962,12 @@ $.write(JSON.stringify({ count: 42 }), 'my-data');
 const data = $.read('my-data');
 if (data) {
     const obj = JSON.parse(data);
-    $.log('Count:', obj.count);
+    $.log('Count: ' + obj.count);
 }
 
 // Delete
 $.del('my-data');
+$.done();
 ```
 
 #### Environment Detection Methods
@@ -733,9 +979,11 @@ $.del('my-data');
 
 **Example:**
 ```javascript
+const $ = new Env('Environment Detection');
 if ($.isQuanX()) {
     $.log('Running in Quantumult X compatibility mode');
 }
+$.done();
 ```
 
 ---
@@ -750,17 +998,18 @@ const $ = new Env('Health Check');
 
     // Download remote utility library (auto-cached)
     try {
-        const utils = await $.getScript('https://example.com/utils.js');
+        const utils = await $.getScript('https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js');
         eval(utils);
+        $.log('Utility library loaded successfully');
     } catch (error) {
-        $.log('Utility library loading failed:', error);
+        $.log('Utility library loading failed: ' + error);
     }
 
     // Execute HTTP request
     const result = await $.http.get({
-        url: 'https://api.example.com/health',
+        url: 'https://jsonplaceholder.typicode.com/posts/1',
         headers: {
-            'Authorization': 'Bearer token'
+            'Accept': 'application/json'
         }
     });
 
@@ -773,7 +1022,7 @@ const $ = new Env('Health Check');
         // Send notification
         $.notification.post('Health Check', '✅ Passed', '');
     } else {
-        $.log('Health check failed:', result.error);
+        $.log('Health check failed: ' + result.error);
         $.notification.post('Health Check', '❌ Failed', result.error || '');
     }
 
@@ -852,7 +1101,7 @@ $task.fetch({
     method: 'GET'
 })
 .then(response => {
-    console.log('Access successful:', response.body);
+    console.log('Access successful:'+ response.body);
 });
 ```
 
@@ -885,14 +1134,19 @@ $task.fetch({
 
 **Example:**
 ```javascript
-const $ = new Env('My Script');
+(async () => {
+    const $ = new Env('My Script');
 
-// First call downloads and caches
-const cheerio = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
-// Cache key: script_cache_cheerio.min.js
+    // First call downloads and caches
+    const cheerio = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
+    // Cache key: script_cache_cheerio.min.js
 
-// Second call reads directly from cache, instant return
-const cheerio2 = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
+    // Second call reads directly from cache, instant return
+    const cheerio2 = await $.getScript('https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/browser/cheerio.min.js');
+
+    $.log('Script caching demo completed');
+    $.done();
+})();
 ```
 
 **Clear cache:**
@@ -915,20 +1169,49 @@ $persistentStore.remove('script_cache_cheerio.min.js');
 **Best practice:**
 ```javascript
 // Use runtime variables to pass temporary state
-$variables.set('request_count', '0');
+// Define API endpoints to check
+const endpoints = [
+    'https://jsonplaceholder.typicode.com/posts/1',
+    'https://jsonplaceholder.typicode.com/posts/2',
+    'https://jsonplaceholder.typicode.com/posts/3'
+];
 
-hosts.forEach(host => {
-    checkHost(host, (result) => {
+// Initialize counters
+$variables.set('request_count', '0');
+$variables.set('success_count', '0');
+
+// Check each endpoint
+endpoints.forEach(url => {
+    $httpClient.get(url, (error, response, body) => {
+        // Update request count
         let count = parseInt($variables.get('request_count') || '0');
         count++;
         $variables.set('request_count', count.toString());
 
-        if (count === hosts.length) {
-            // Save to persistent storage when complete
+        // Update success count
+        if (!error && response.status === 200) {
+            let successCount = parseInt($variables.get('success_count') || '0');
+            successCount++;
+            $variables.set('success_count', successCount.toString());
+        }
+
+        // Save results after all requests complete
+        if (count === endpoints.length) {
+            const successCount = parseInt($variables.get('success_count') || '0');
+
+            // Save to persistent storage
             $persistentStore.write(
-                JSON.stringify({ lastCheck: $date.now(), total: count }),
+                JSON.stringify({
+                    lastCheck: $date.now(),
+                    total: count,
+                    success: successCount,
+                    failureRate: ((count - successCount) / count * 100).toFixed(2) + '%'
+                }),
                 'check-history'
             );
+
+            console.log('Check completed: ' + successCount + '/' + count + ' succeeded');
+            $notification.post('Health Check Complete', successCount + '/' + count + ' endpoints healthy', '');
             $done();
         }
     });
@@ -937,138 +1220,6 @@ hosts.forEach(host => {
 
 ---
 
-## Best Practices
-
-### 1. Error Handling
-
-Always handle errors in callbacks:
-
-```javascript
-$ssh.exec(hostId, command, (result) => {
-    if (!result.success) {
-        console.error('Command failed:', result.error);
-        $notification.post('Error', result.error, '');
-        $done(JSON.stringify({ error: result.error }));
-        return;
-    }
-    // Handle success case
-});
-```
-
-### 2. Async Operations
-
-Track async operations to ensure proper `$done()` call:
-
-```javascript
-let completed = 0;
-const total = hosts.length;
-
-hosts.forEach(host => {
-    checkHost(host, (result) => {
-        completed++;
-        if (completed === total) {
-            $done(JSON.stringify({ results }));
-        }
-    });
-});
-```
-
-### 3. Logging
-
-Use structured logging with prefixes:
-
-```javascript
-console.log('[Health Check] Starting...');
-console.warn('[Health Check] High CPU: 95%');
-console.error('[Health Check] Connection failed');
-```
-
----
-
-## Complete Examples
-
-### SSH Script Example
-
-```javascript
-console.log('[Disk Check] Starting...');
-
-$ssh.getHosts((hosts) => {
-    if (hosts.length === 0) {
-        console.error('[Disk Check] No hosts configured');
-        $done(JSON.stringify({ error: 'No hosts found' }));
-        return;
-    }
-
-    let results = [];
-    let completed = 0;
-
-    hosts.forEach(host => {
-        $ssh.exec(host.id, "df -h / | tail -1 | awk '{print $5}'", (result) => {
-            if (result.success) {
-                const usage = parseInt(result.output.trim());
-                results.push({ host: host.name, usage });
-
-                if (usage > 90) {
-                    $notification.post(
-                        'Disk Alert',
-                        host.name,
-                        `Disk usage: ${usage}%`
-                    );
-                }
-            }
-
-            completed++;
-            if (completed === hosts.length) {
-                $done(JSON.stringify({ results }));
-            }
-        });
-    });
-});
-```
-
-### HTTP Script Example
-
-```javascript
-console.log('[API Check] Starting...');
-
-const endpoints = [
-    'https://jsonplaceholder.typicode.com/posts/1',
-    'https://httpbin.org/status/200'
-];
-
-let results = [];
-let completed = 0;
-
-endpoints.forEach(url => {
-    const startTime = $date.timestamp();
-
-    $httpClient.get(url, (error, response, body) => {
-        const endTime = $date.timestamp();
-        const responseTime = endTime - startTime;
-
-        results.push({
-            url,
-            healthy: !error && response.status === 200,
-            responseTime
-        });
-
-        completed++;
-        if (completed === endpoints.length) {
-            const unhealthy = results.filter(r => !r.healthy);
-            if (unhealthy.length > 0) {
-                $notification.post(
-                    'API Alert',
-                    `${unhealthy.length} endpoints down`,
-                    ''
-                );
-            }
-            $done(JSON.stringify({ results }));
-        }
-    });
-});
-```
-
----
 
 ## Need Help?
 
