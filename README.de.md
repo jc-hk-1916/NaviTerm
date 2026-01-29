@@ -89,6 +89,13 @@ Diese App basiert auf den folgenden großartigen Open-Source-Projekten:
 
 ---
 
+## 💬 Treten Sie unserer Community bei
+
+- 📢 [Telegram-Kanal](https://t.me/khgk180_na) - Erhalten Sie die neuesten Updates, Feature-Releases und wichtige Ankündigungen
+- 💬 [Telegram-Diskussionsgruppe](https://t.me/kkkhjo_ut357) - Vernetzen Sie sich mit anderen Benutzern, teilen Sie Tipps und tauschen Sie Erfahrungen aus
+
+---
+
 ## 🎁 Anleitung zum Einlösen von Promo-Codes
 
 Wir bieten gelegentlich kostenlose Abonnement-Promo-Codes an (1 Monat oder 1 Jahr). Wenn Sie einen Promo-Code erhalten haben:

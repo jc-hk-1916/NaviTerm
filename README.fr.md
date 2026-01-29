@@ -89,6 +89,13 @@ Cette application est construite avec les projets open source suivants :
 
 ---
 
+## 💬 Rejoignez Notre Communauté
+
+- 📢 [Canal Telegram](https://t.me/khgk180_na) - Recevez les dernières mises à jour, les sorties de fonctionnalités et les annonces importantes
+- 💬 [Groupe de Discussion Telegram](https://t.me/kkkhjo_ut357) - Connectez-vous avec d'autres utilisateurs, partagez des astuces et échangez des expériences
+
+---
+
 ## 🎁 Guide d'Échange de Code Promotionnel
 
 Nous offrons occasionnellement des codes promotionnels d'abonnement gratuit (1 mois ou 1 an). Si vous avez reçu un code promotionnel :

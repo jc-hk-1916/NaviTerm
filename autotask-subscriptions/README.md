@@ -16,6 +16,11 @@ A comprehensive collection of automation scripts for server monitoring, API heal
 2. Navigate to **AutoTask** → **Subscriptions**
 3. Add subscription with one of the URLs below
 
+## 💬 Join Our Community
+
+- 📢 [Telegram Channel](https://t.me/khgk180_na) - Get the latest updates, feature releases, and important announcements
+- 💬 [Telegram Discussion Group](https://t.me/kkkhjo_ut357) - Connect with other users, share tips, and exchange experiences
+
 ## 📋 Available Subscriptions
 
 ### Complete Suite (Recommended)

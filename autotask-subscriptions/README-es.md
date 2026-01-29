@@ -16,6 +16,11 @@ Una colección completa de scripts de automatización para monitoreo de servidor
 2. Navega a **AutoTask** → **Suscripciones**
 3. Agrega una suscripción con una de las URLs a continuación
 
+## 💬 Únete a Nuestra Comunidad
+
+- 📢 [Canal de Telegram](https://t.me/khgk180_na) - Obtén las últimas actualizaciones, lanzamientos de funciones y anuncios importantes
+- 💬 [Grupo de Discusión de Telegram](https://t.me/kkkhjo_ut357) - Conéctate con otros usuarios, comparte consejos e intercambia experiencias
+
 ## 📋 Suscripciones Disponibles
 
 ### Suite de Monitoreo SSH

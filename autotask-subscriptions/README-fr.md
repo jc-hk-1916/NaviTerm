@@ -16,6 +16,11 @@ Une collection complète de scripts d'automatisation pour la surveillance des se
 2. Naviguez vers **AutoTask** → **Abonnements**
 3. Ajoutez un abonnement avec l'une des URLs ci-dessous
 
+## 💬 Rejoignez Notre Communauté
+
+- 📢 [Canal Telegram](https://t.me/khgk180_na) - Recevez les dernières mises à jour, les sorties de fonctionnalités et les annonces importantes
+- 💬 [Groupe de Discussion Telegram](https://t.me/kkkhjo_ut357) - Connectez-vous avec d'autres utilisateurs, partagez des astuces et échangez des expériences
+
 ## 📋 Abonnements Disponibles
 
 ### Suite de Surveillance SSH

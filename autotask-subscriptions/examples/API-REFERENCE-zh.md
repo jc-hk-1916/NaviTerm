@@ -1189,7 +1189,12 @@ endpoints.forEach(url => {
 
 ---
 
+## 💬 加入社区
 
+- 📢 [Telegram 频道](https://t.me/khgk180_na) - 获取最新更新、功能发布和重要公告
+- 💬 [Telegram 讨论组](https://t.me/kkkhjo_ut357) - 与其他用户交流使用技巧、分享经验
+
+---
 
 ## 需要帮助？
 
