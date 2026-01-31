@@ -383,7 +383,7 @@ $task.fetch({
 
 ### `$notification.post(title, subtitle, body, options)`
 
-Send system notification.
+Send system notification with optional custom icon.
 
 **Parameters:**
 - `title` (string): Notification title
@@ -391,8 +391,14 @@ Send system notification.
 - `body` (string): Notification content
 - `options` (object): Optional configuration
   - `url` or `open-url` (string): URL to open when notification is clicked
+  - `icon` (string): Custom notification icon (supports 3 formats):
+    - **Remote URL**: `https://...` or `http://...` - Downloads and displays the image
+    - **SF Symbol**: System symbol name (e.g., `star.fill`, `bell.badge.fill`, `checkmark.circle.fill`)
+    - **Local Path**: `/path/to/icon.png` or `file:///path/to/icon.png` - Uses local image file
 
-**Example:**
+**Examples:**
+
+**Basic notification (no icon):**
 ```javascript
 $notification.post(
     'Server Alert',
@@ -402,13 +408,71 @@ $notification.post(
 );
 ```
 
+**With remote icon URL:**
+```javascript
+$notification.post(
+    'Server Alert',
+    'High CPU Usage',
+    'CPU usage reached 95%',
+    {
+        url: 'https://monitoring.example.com',
+        icon: 'https://example.com/alert-icon.png'
+    }
+);
+```
+
+**With SF Symbol icon:**
+```javascript
+$notification.post(
+    'Task Complete',
+    'Backup Finished',
+    'All files backed up successfully',
+    {
+        url: 'app://backup-results',
+        icon: 'checkmark.circle.fill'  // System symbol
+    }
+);
+```
+
+**With local file icon:**
+```javascript
+$notification.post(
+    'Custom Alert',
+    'Important Message',
+    'Check the details',
+    {
+        url: 'app://details',
+        icon: '/path/to/custom-icon.png'
+    }
+);
+```
+
+**Common SF Symbol icons:**
+- `checkmark.circle.fill` - Success/completion
+- `exclamationmark.triangle.fill` - Warning
+- `xmark.circle.fill` - Error/failure
+- `bell.badge.fill` - Alert/notification
+- `star.fill` - Favorite/important
+- `info.circle.fill` - Information
+- `gear` - Settings/configuration
+- `arrow.down.circle.fill` - Download
+- `arrow.up.circle.fill` - Upload
+
 ### `$notify(title, subtitle, body, options)`
 
-Shorthand for `$notification.post()`, same parameters.
+Shorthand for `$notification.post()`, same parameters and icon support.
 
 **Example:**
 ```javascript
-$notify('Task Complete', 'Data Processing', 'Processed 100 records', { 'open-url': 'app://results' });
+$notify(
+    'Task Complete',
+    'Data Processing',
+    'Processed 100 records',
+    {
+        'open-url': 'app://results',
+        icon: 'checkmark.circle.fill'
+    }
+);
 ```
 
 ---

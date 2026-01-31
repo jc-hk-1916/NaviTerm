@@ -386,7 +386,7 @@ $task.fetch({
 
 ### `$notification.post(title, subtitle, body, options)`
 
-发送系统通知。
+发送系统通知，支持自定义图标。
 
 **参数：**
 - `title` (string)：通知标题
@@ -394,8 +394,14 @@ $task.fetch({
 - `body` (string)：通知内容
 - `options` (object)：可选配置
   - `url` 或 `open-url` (string)：点击通知后打开的 URL
+  - `icon` (string)：自定义通知图标（支持 3 种格式）：
+    - **远程 URL**：`https://...` 或 `http://...` - 下载并显示图片
+    - **SF Symbol**：系统符号名称（如 `star.fill`、`bell.badge.fill`、`checkmark.circle.fill`）
+    - **本地路径**：`/path/to/icon.png` 或 `file:///path/to/icon.png` - 使用本地图片文件
 
 **示例：**
+
+**基础通知（无图标）：**
 ```javascript
 $notification.post(
     '服务器告警',
@@ -405,13 +411,71 @@ $notification.post(
 );
 ```
 
+**使用远程图标 URL：**
+```javascript
+$notification.post(
+    '服务器告警',
+    'CPU 使用率过高',
+    'CPU 使用率达到 95%',
+    {
+        url: 'https://monitoring.example.com',
+        icon: 'https://example.com/alert-icon.png'
+    }
+);
+```
+
+**使用 SF Symbol 图标：**
+```javascript
+$notification.post(
+    '任务完成',
+    '备份已完成',
+    '所有文件已成功备份',
+    {
+        url: 'app://backup-results',
+        icon: 'checkmark.circle.fill'  // 系统符号
+    }
+);
+```
+
+**使用本地文件图标：**
+```javascript
+$notification.post(
+    '自定义告警',
+    '重要消息',
+    '请查看详情',
+    {
+        url: 'app://details',
+        icon: '/path/to/custom-icon.png'
+    }
+);
+```
+
+**常用 SF Symbol 图标：**
+- `checkmark.circle.fill` - 成功/完成
+- `exclamationmark.triangle.fill` - 警告
+- `xmark.circle.fill` - 错误/失败
+- `bell.badge.fill` - 提醒/通知
+- `star.fill` - 收藏/重要
+- `info.circle.fill` - 信息
+- `gear` - 设置/配置
+- `arrow.down.circle.fill` - 下载
+- `arrow.up.circle.fill` - 上传
+
 ### `$notify(title, subtitle, body, options)`
 
-`$notification.post()` 的简写形式，参数完全相同。
+`$notification.post()` 的简写形式，参数和图标支持完全相同。
 
 **示例：**
 ```javascript
-$notify('任务完成', '数据处理', '已处理 100 条记录', { 'open-url': 'app://results' });
+$notify(
+    '任务完成',
+    '数据处理',
+    '已处理 100 条记录',
+    {
+        'open-url': 'app://results',
+        icon: 'checkmark.circle.fill'
+    }
+);
 ```
 
 ---

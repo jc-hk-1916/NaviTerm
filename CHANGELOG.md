@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.6.6]
+
+### New Features
+- Added a real-time debug log page to streamline script debugging.
+- Fixed translation errors to enhance the multi-language experience.
+
+## [2.6.5]
+
+### New Features
+- Fixed the $environment information interface
+- Fixed the Env.wait() method
+
+
 ## [2.6.0]
 
 ### New Features
