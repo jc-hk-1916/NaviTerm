@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.6.9]
+
+### New Features
+- Fixed an issue where arrow keys would stop working and output A/B/C/D in programs like Midnight Commander.
+
+## [2.6.8]
+
+### New Features
+- Added a menu bar icon on macOS.
+- Fixed an issue where the Dock icon didn't fill the full display area on some devices.
+- Fixed an issue where text in script execution notifications wasn't centered.
+
+## [2.6.7]
+
+### New Features
+- Added a real-time debugging log page to optimize the script debugging experience.
+- Script notifications now support custom icons.
+- Fixed translation errors in some languages to improve the multi-language experience.
+
 ## [2.6.6]
 
 ### New Features
