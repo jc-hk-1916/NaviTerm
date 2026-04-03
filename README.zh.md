@@ -2,71 +2,62 @@
 
 语言 / Language: 中文 | [English](README.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [日本語](README.ja.md) | [Русский](README.ru.md)
 
-让服务器运维自动化的专业SSH工具。集成SSH终端、SFTP文件管理、端口转发、自动化任务和命令片段，专为macOS、iPhone和iPad打造。一款应用解决远程管理全部需求，支持iCloud同步和后台保活。
+集成AI助手的专业SSH运维工具。融合SSH终端、SFTP文件管理、端口转发、自动化任务和AI智能助手，专为macOS、iPhone和iPad打造。一款应用解决远程管理全部需求，支持iCloud同步和后台保活。
 
 ---
 
-## ✨ 全新特性
+## 核心特色
+
+### AI智能助手
+- 终端内置AI面板，支持OpenAI、Claude、Gemini等多种AI服务
+- 一键解释命令输出、修复错误、优化脚本、安全检查
+- 多会话对话管理，自定义系统提示词模板
+- 智能命令建议，提升运维效率
 
 ### 自动化任务引擎
 - 定时执行重复性运维任务，解放双手
 - 可视化脚本编辑器，无需编程基础
 - 内置丰富模板：服务器监控、日志分析、批量部署
 - 多服务器批量操作，一键完成跨机器任务
-- 任务日志完整记录，执行结果一目了然
 
-### iOS后台保活
-- SSH/SFTP/端口转发会话后台持续运行
-- 切换应用或锁屏后连接不中断
-
-### iCloud跨设备同步
-- 主机、端口转发、命令片段在iPhone、iPad、Mac间实时同步
-- 在任意设备添加配置，其他设备即刻可用
-- 静默推送，云端变更自动同步
+### iOS后台保活 + iCloud同步
+- SSH/SFTP/端口转发会话后台持续运行，切换应用不中断
+- 主机配置、命令片段在iPhone、iPad、Mac间实时同步
+- 云端变更自动推送，任意设备即刻可用
 
 ---
 
-## 🔧 核心功能
+## 专业功能
 
 ### SSH终端
-- 密码和私钥（RSA、ED25519、P256）认证
-- 多标签页同时管理多台服务器
-- 完整终端仿真，支持颜色和特殊字符
-- 终端内搜索高亮
-
-### 命令片段
-- 保存常用命令，一键快速执行
-- 构建个人命令库，告别重复输入
-- 支持变量替换，灵活适配不同场景
+- 支持RSA、ED25519、P256密钥认证
+- 多标签页管理，完整终端仿真
+- 终端内搜索高亮，AI智能辅助
 
 ### SFTP文件管理
-- 双面板文件浏览器，拖拽上传下载
-- 文件重命名、删除、权限修改
-- 传输进度实时显示，可随时取消
+- 双面板浏览器，拖拽上传下载
+- 文件操作、权限修改、传输进度显示
 - 多种文件类型预览
 
 ### 端口转发
-- 本地/远程端口转发
-- SOCKS5动态代理
-- SSH隧道加密传输
-- 内网服务安全访问
+- 本地/远程端口转发，SOCKS5代理
+- SSH隧道加密传输，内网服务安全访问
 
-### 密钥管理
-- OpenSSH兼容，支持Ed25519、RSA、P256/EC
-- 本地安全存储，绝不上传
-- 一键快速认证
+### 命令片段
+- 保存常用命令，一键快速执行
+- 支持变量替换，构建个人命令库
 
 ---
 
-## 🎯 技术亮点
+## 技术保障
 
-- **安全可靠**：端到端SSH加密，私钥仅存本地，零数据收集
-- **全球化**：支持25+种语言
-- **原生体验**：完美适配Apple设计语言，响应式布局，手势操作
+- 安全可靠：端到端SSH加密，私钥仅存本地，零数据收集
+- 全球化：支持25+种语言
+- 原生体验：完美适配Apple设计语言
 
 ---
 
-## 🙏 特别感谢
+## 特别感谢
 
 本应用基于以下优秀的开源项目构建：
 
@@ -75,7 +66,7 @@
 
 ---
 
-## 💎 订阅模式
+## 订阅模式
 
 - **免费版**：完整功能体验，最多5个主机
 - **专业版**：无限主机连接，月度/年度可选
@@ -83,20 +74,20 @@
 
 ---
 
-## 🚀 下载
+## 下载
 
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/naviterm/id6747072398)
 
 ---
 
-## 💬 加入社区
+## 加入社区
 
 - 📢 [Telegram 频道](https://t.me/khgk180_na) - 获取最新更新、功能发布和重要公告
 - 💬 [Telegram 讨论组](https://t.me/kkkhjo_ut357) - 与其他用户交流使用技巧、分享经验
 
 ---
 
-## 🎁 促销码兑换说明
+## 促销码兑换说明
 
 我们不定期提供免费订阅兑换码（1 个月或 1 年），如果你收到了兑换码：
 
@@ -112,7 +103,7 @@
 
 ---
 
-## 📜 法律信息
+## 法律信息
 
 - [使用条款](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/)
 - [隐私政策](https://www.trivix.cn/NaviTerm_Privacy_Policy.html)
@@ -126,20 +117,17 @@
 
 ![App Screenshot](images/3.png)
 
-![App Screenshot](images/4.png)
-
-![App Screenshot](images/5.png)
-
-![App Screenshot](images/6.png)
-
-![App Screenshot](images/7.jpg)
-
-![App Screenshot](images/8.jpg)
-
-![App Screenshot](images/9.jpg)
-
-![App Screenshot](images/10.jpg)
-
-![App Screenshot](images/11.jpg)
-
-![App Screenshot](images/12.jpg)
+<table style="width: 100%;">
+<!-- 第一行 -->
+<tr>
+<td width="33.3%"><img src="images/4.jpg"></td>
+<td width="33.3%"><img src="images/5.jpg"></td>
+<td width="33.3%"><img src="images/6.jpg"></td>
+</tr>
+<!-- 第二行 -->
+<tr>
+<td width="33.3%"><img src="images/7.jpg"></td>
+<td width="33.3%"><img src="images/8.jpg"></td>
+<td width="33.3%"><img src="images/9.jpg"></td>
+</tr>
+</table>

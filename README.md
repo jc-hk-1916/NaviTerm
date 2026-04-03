@@ -2,71 +2,62 @@
 
 Language / 语言: English | [中文](README.zh.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [日本語](README.ja.md) | [Русский](README.ru.md)
 
-Automate your server operations with this professional SSH tool. Integrates SSH terminal, SFTP file management, port forwarding, automated tasks, and command snippets—built from the ground up for macOS, iPhone, and iPad. One app to solve all your remote management needs, with iCloud sync and background activity support.
+NaviTerm - The Pro SSH Client with a Built-in AI Assistant. It combines an SSH terminal, SFTP file management, port forwarding, task automation, and a powerful AI copilot into one seamless experience, designed exclusively for macOS, iPhone, and iPad. Your all-in-one remote management solution, complete with iCloud sync and background task support.
 
 ---
 
-## ✨ All-New Features
+## CORE FEATURES
 
-### Automated Task Engine
-- Schedule repetitive operations to run automatically, freeing your hands
-- Visual script editor—no programming experience required
-- Rich built-in templates: server monitoring, log analysis, batch deployment
-- Multi-server batch operations—complete cross-machine tasks with one tap
-- Complete task logs with clear execution results
+### AI Copilot
+- AI panel integrated directly into the terminal, supporting OpenAI, Claude, Gemini, and more
+- One-click command explanations, error fixes, script optimization, and security checks
+- Manage multiple AI chat sessions and create custom system prompt templates
+- Get smart command suggestions to supercharge your productivity
 
-### Background Activity
-- SSH/SFTP/Port Forwarding sessions continue running in the background
-- Connections stay active even when you switch apps or lock your screen
+### Automation Engine
+- Schedule and run repetitive tasks automatically, so you can set it and forget it
+- Visual script editor—no coding required
+- Packed with built-in templates for server monitoring, log analysis, batch deployments, and more
+- Execute tasks across multiple servers at once with a single click
 
-### iCloud Sync Across Devices
-- Hosts, port forwards, and command snippets sync in real-time across iPhone, iPad, and Mac
-- Add a configuration on any device, and it's instantly available on all others
-- Silent push notifications keep cloud changes automatically synced
+### Stay Connected with Background Tasks & iCloud Sync
+- Keep your SSH, SFTP, and port forwarding sessions running in the background, even when you switch apps
+- Host configurations and command snippets sync in real-time across your iPhone, iPad, and Mac
+- Changes are pushed automatically, so your setup is always ready on any device
 
 ---
 
-## 🔧 Core Features
+## PROFESSIONAL TOOLS
 
 ### SSH Terminal
-- Password and private key authentication (RSA, ED25519, P256)
-- Manage multiple servers simultaneously with tabbed interface
-- Full terminal emulation with color and special character support
-- In-terminal search with highlighting
-
-### Command Snippets
-- Save frequently used commands for one-tap execution
-- Build your personal command library—say goodbye to repetitive typing
-- Variable substitution for flexible adaptation to different scenarios
+- Supports RSA, ED25519, and P256 key authentication
+- Full-featured terminal emulation with multi-tab support
+- In-terminal search highlighting and AI-powered assistance
 
 ### SFTP File Management
-- Dual-pane file browser with drag-and-drop upload/download
-- File rename, delete, and permission modification
-- Real-time transfer progress with cancellation support
-- Preview multiple file types
+- Dual-pane browser with drag-and-drop for uploads and downloads
+- Manage files, modify permissions, and monitor transfer progress
+- Preview multiple file types directly in the app
 
 ### Port Forwarding
-- Local/remote port forwarding
-- SOCKS5 dynamic proxy
-- SSH tunnel encryption
-- Secure access to internal network services
+- Set up local/remote port forwarding and SOCKS5 proxies
+- Securely access internal network services with SSH tunneling
 
-### Key Management
-- OpenSSH compatible—supports Ed25519, RSA, P256/EC
-- Secure local storage, never uploaded
-- One-tap quick authentication
+### Command Snippets
+- Save your most-used commands for one-tap execution
+- Build your personal command library with support for variables
 
 ---
 
-## 🎯 Technical Highlights
+## BUILT FOR YOU
 
-- **Secure & Reliable**: End-to-end SSH encryption, private keys stored locally only, zero data collection
-- **Global**: Supports 25+ languages
-- **Native Experience**: Perfectly adapted to Apple design language, responsive layout, gesture controls
+- **Secure & Private**: End-to-end SSH encryption. Private keys are stored locally on your device. We collect zero data
+- **Global Ready**: Supports over 25 languages
+- **Native Experience**: Perfectly crafted to match Apple's design language for a seamless feel
 
 ---
 
-## 🙏 Special Thanks
+## Special Thanks
 
 This app is built with the following amazing open-source projects:
 
@@ -75,7 +66,7 @@ This app is built with the following amazing open-source projects:
 
 ---
 
-## 💎 Subscription Model
+## Subscription Model
 
 - **Free Version**: Full feature experience with up to 5 hosts
 - **Pro Version**: Unlimited hosts with flexible monthly or annual plans
@@ -83,20 +74,20 @@ This app is built with the following amazing open-source projects:
 
 ---
 
-## 🚀 Download
+## Download
 
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/naviterm/id6747072398)
 
 ---
 
-## 💬 Join Our Community
+## Join Our Community
 
 - 📢 [Telegram Channel](https://t.me/khgk180_na) - Get the latest updates, feature releases, and important announcements
 - 💬 [Telegram Discussion Group](https://t.me/kkkhjo_ut357) - Connect with other users, share tips, and exchange experiences
 
 ---
 
-## 🎁 Promo Code Redemption Guide
+## Promo Code Redemption Guide
 
 We occasionally offer free subscription promo codes (1 month or 1 year). If you have received a promo code:
 
@@ -112,7 +103,7 @@ We occasionally offer free subscription promo codes (1 month or 1 year). If you 
 
 ---
 
-## 📜 Legal
+## Legal
 
 - [Terms of Use](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/)
 - [Privacy Policy](https://www.trivix.cn/NaviTerm_Privacy_Policy.html)
@@ -126,20 +117,17 @@ We occasionally offer free subscription promo codes (1 month or 1 year). If you 
 
 ![App Screenshot](images/3.png)
 
-![App Screenshot](images/4.png)
-
-![App Screenshot](images/5.png)
-
-![App Screenshot](images/6.png)
-
-![App Screenshot](images/7.jpg)
-
-![App Screenshot](images/8.jpg)
-
-![App Screenshot](images/9.jpg)
-
-![App Screenshot](images/10.jpg)
-
-![App Screenshot](images/11.jpg)
-
-![App Screenshot](images/12.jpg)
+<table style="width: 100%;">
+<!-- 第一行 -->
+<tr>
+<td width="33.3%"><img src="images/4.jpg"></td>
+<td width="33.3%"><img src="images/5.jpg"></td>
+<td width="33.3%"><img src="images/6.jpg"></td>
+</tr>
+<!-- 第二行 -->
+<tr>
+<td width="33.3%"><img src="images/7.jpg"></td>
+<td width="33.3%"><img src="images/8.jpg"></td>
+<td width="33.3%"><img src="images/9.jpg"></td>
+</tr>
+</table>

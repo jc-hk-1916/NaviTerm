@@ -2,71 +2,62 @@
 
 Idioma / Language: Español | [English](README.md) | [中文](README.zh.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [日本語](README.ja.md) | [Русский](README.ru.md)
 
-Automatiza las operaciones de tu servidor con esta herramienta SSH profesional. Integra terminal SSH, gestión de archivos SFTP, reenvío de puertos, tareas automatizadas y fragmentos de comandos, diseñada desde cero para macOS, iPhone e iPad. Una aplicación para resolver todas tus necesidades de gestión remota, con sincronización iCloud y actividad en segundo plano.
+Herramienta profesional de administración SSH con asistente de IA integrado. Combina terminal SSH, gestor de archivos SFTP, reenvío de puertos, automatización de tareas y un asistente inteligente de IA, diseñada específicamente para macOS, iPhone y iPad. Una única app para resolver todas vuestras necesidades de gestión remota, compatible con sincronización mediante iCloud y ejecución en segundo plano.
 
 ---
 
-## ✨ Nuevas Características
+## Características principales
 
-### Motor de Tareas Automatizadas
-- Programa operaciones repetitivas para ejecutarse automáticamente
-- Editor de scripts visual sin necesidad de experiencia en programación
-- Plantillas integradas ricas: monitoreo de servidores, análisis de registros, implementación por lotes
-- Operaciones por lotes en múltiples servidores con un solo toque
-- Registros completos de tareas con resultados de ejecución claros
+### Asistente inteligente de IA
+- Panel de IA integrado en el terminal, compatible con OpenAI, Claude, Gemini y otros servicios
+- Explicad las salidas de comandos, corregid errores, optimizad scripts y auditad la seguridad con un solo clic
+- Gestión de conversaciones multisesión y plantillas personalizables para los prompts del sistema
+- Sugerencias inteligentes de comandos para impulsar vuestra productividad
 
-### Actividad en Segundo Plano
-- Las sesiones SSH/SFTP/Reenvío de Puertos continúan ejecutándose en segundo plano
-- Las conexiones permanecen activas incluso cuando cambias de aplicación o bloqueas la pantalla
+### Motor de automatización de tareas
+- Programad tareas de mantenimiento repetitivas y olvidaos de hacerlas a mano
+- Editor visual de scripts que no requiere conocimientos previos de programación
+- Amplia galería de plantillas integradas: monitorización de servidores, análisis de logs y despliegues masivos
+- Operaciones por lotes en múltiples servidores; completad tareas en varias máquinas con un solo clic
 
-### Sincronización iCloud entre Dispositivos
-- Hosts, reenvíos de puertos y fragmentos de comandos se sincronizan en tiempo real entre iPhone, iPad y Mac
-- Agrega una configuración en cualquier dispositivo y estará disponible instantáneamente en todos los demás
-- Notificaciones push silenciosas mantienen los cambios de la nube sincronizados automáticamente
+### Segundo plano en iOS + Sincronización de iCloud
+- Las sesiones SSH, SFTP y de reenvío de puertos siguen funcionando en segundo plano; cambiad de app sin sufrir cortes
+- Sincronización en tiempo real de la configuración de vuestros hosts y fragmentos de comandos entre el iPhone, el iPad y el ordenador Mac
+- Los cambios en la nube se envían automáticamente, listos para usar en cualquier dispositivo al instante
 
 ---
 
-## 🔧 Funciones Principales
+## Funciones profesionales
 
 ### Terminal SSH
-- Autenticación por contraseña y clave privada (RSA, ED25519, P256)
-- Gestiona múltiples servidores simultáneamente con interfaz de pestañas
-- Emulación de terminal completa con soporte de colores y caracteres especiales
-- Búsqueda en terminal con resaltado
+- Compatible con autenticación mediante claves RSA, ED25519 y P256
+- Gestión mediante múltiples pestañas y emulación completa del terminal
+- Búsqueda con resaltado dentro del terminal y asistencia inteligente de IA
 
-### Fragmentos de Comandos
-- Guarda comandos de uso frecuente para ejecución con un toque
-- Construye tu biblioteca personal de comandos y olvídate de la escritura repetitiva
-- Sustitución de variables para adaptación flexible a diferentes escenarios
+### Gestor de archivos SFTP
+- Navegador de doble panel: arrastrad y soltad para subir o descargar archivos
+- Operaciones con archivos, modificación de permisos e indicador del progreso de transferencia
+- Vista previa para múltiples tipos de archivo
 
-### Gestión de Archivos SFTP
-- Navegador de archivos de doble panel con carga/descarga por arrastrar y soltar
-- Renombrar, eliminar archivos y modificar permisos
-- Progreso de transferencia en tiempo real con soporte de cancelación
-- Vista previa de múltiples tipos de archivos
+### Reenvío de puertos
+- Reenvío de puertos locales/remotos y proxy SOCKS5
+- Transmisión cifrada mediante túnel SSH para acceder de forma segura a los servicios de vuestra red interna
 
-### Reenvío de Puertos
-- Reenvío de puertos local/remoto
-- Proxy dinámico SOCKS5
-- Cifrado de túnel SSH
-- Acceso seguro a servicios de red interna
-
-### Gestión de Claves
-- Compatible con OpenSSH: soporta Ed25519, RSA, P256/EC
-- Almacenamiento local seguro, nunca se sube
-- Autenticación rápida con un toque
+### Fragmentos de comandos
+- Guardad vuestros comandos más frecuentes para ejecutarlos rápidamente con un clic
+- Compatibilidad con sustitución de variables para crear vuestra propia biblioteca de comandos personal
 
 ---
 
-## 🎯 Aspectos Técnicos Destacados
+## Garantía técnica
 
-- **Seguro y Confiable**: Cifrado SSH de extremo a extremo, claves privadas almacenadas solo localmente, cero recopilación de datos
-- **Global**: Soporta más de 25 idiomas
-- **Experiencia Nativa**: Perfectamente adaptado al lenguaje de diseño de Apple, diseño responsivo, controles por gestos
+- Seguro y fiable: cifrado SSH de extremo a extremo, las claves privadas solo se guardan en vuestro dispositivo local y con cero recopilación de datos
+- Global: disponible en más de 25 idiomas
+- Experiencia nativa: perfectamente adaptada al lenguaje de diseño de Apple
 
 ---
 
-## 🙏 Agradecimientos Especiales
+## Agradecimientos Especiales
 
 Esta aplicación está construida con los siguientes proyectos de código abierto:
 
@@ -75,7 +66,7 @@ Esta aplicación está construida con los siguientes proyectos de código abiert
 
 ---
 
-## 💎 Modelo de Suscripción
+## Modelo de Suscripción
 
 - **Versión Gratuita**: Experiencia completa de funciones con hasta 5 hosts
 - **Versión Pro**: Hosts ilimitados con planes mensuales o anuales flexibles
@@ -83,20 +74,20 @@ Esta aplicación está construida con los siguientes proyectos de código abiert
 
 ---
 
-## 🚀 Descargar
+## Descargar
 
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/naviterm/id6747072398)
 
 ---
 
-## 💬 Únete a Nuestra Comunidad
+## Únete a Nuestra Comunidad
 
 - 📢 [Canal de Telegram](https://t.me/khgk180_na) - Obtén las últimas actualizaciones, lanzamientos de funciones y anuncios importantes
 - 💬 [Grupo de Discusión de Telegram](https://t.me/kkkhjo_ut357) - Conéctate con otros usuarios, comparte consejos e intercambia experiencias
 
 ---
 
-## 🎁 Guía de Canje de Códigos Promocionales
+## Guía de Canje de Códigos Promocionales
 
 Ocasionalmente ofrecemos códigos promocionales de suscripción gratuita (1 mes o 1 año). Si has recibido un código promocional:
 
@@ -112,7 +103,7 @@ Ocasionalmente ofrecemos códigos promocionales de suscripción gratuita (1 mes 
 
 ---
 
-## 📜 Legal
+## Legal
 
 - [Términos de Uso](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/)
 - [Política de Privacidad](https://www.trivix.cn/NaviTerm_Privacy_Policy.html)
@@ -126,20 +117,17 @@ Ocasionalmente ofrecemos códigos promocionales de suscripción gratuita (1 mes 
 
 ![App Screenshot](images/3.png)
 
-![App Screenshot](images/4.png)
-
-![App Screenshot](images/5.png)
-
-![App Screenshot](images/6.png)
-
-![App Screenshot](images/7.jpg)
-
-![App Screenshot](images/8.jpg)
-
-![App Screenshot](images/9.jpg)
-
-![App Screenshot](images/10.jpg)
-
-![App Screenshot](images/11.jpg)
-
-![App Screenshot](images/12.jpg)
+<table style="width: 100%;">
+<!-- 第一行 -->
+<tr>
+<td width="33.3%"><img src="images/4.jpg"></td>
+<td width="33.3%"><img src="images/5.jpg"></td>
+<td width="33.3%"><img src="images/6.jpg"></td>
+</tr>
+<!-- 第二行 -->
+<tr>
+<td width="33.3%"><img src="images/7.jpg"></td>
+<td width="33.3%"><img src="images/8.jpg"></td>
+<td width="33.3%"><img src="images/9.jpg"></td>
+</tr>
+</table>

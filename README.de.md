@@ -2,71 +2,62 @@
 
 Sprache / Language: Deutsch | [English](README.md) | [中文](README.zh.md) | [Español](README.es.md) | [Français](README.fr.md) | [日本語](README.ja.md) | [Русский](README.ru.md)
 
-Automatisieren Sie Ihren Serverbetrieb mit diesem professionellen SSH-Tool. Integriert SSH-Terminal, SFTP-Dateiverwaltung, Port-Weiterleitung, automatisierte Aufgaben und Befehlsfragmente – entwickelt für macOS, iPhone und iPad. Eine App für alle Ihre Remote-Management-Anforderungen, mit iCloud-Synchronisierung und Hintergrundaktivität.
+Ein professionelles Tool zur SSH-Administration mit integriertem KI-Assistenten. Es vereint SSH-Terminal, SFTP-Dateimanagement, Portweiterleitung, Automatisierungsaufgaben und intelligente KI-Unterstützung, speziell entwickelt für macOS, iPhone und iPad. Eine einzige App für alle Remote-Management-Anforderungen, inklusive iCloud-Synchronisierung und kontinuierlicher Hintergrundausführung.
 
 ---
 
-## ✨ Neue Funktionen
+## Hauptmerkmale
 
-### Automatisierte Aufgaben-Engine
-- Planen Sie wiederholende Vorgänge zur automatischen Ausführung
-- Visueller Skript-Editor – keine Programmierkenntnisse erforderlich
-- Umfangreiche integrierte Vorlagen: Serverüberwachung, Protokollanalyse, Batch-Bereitstellung
-- Multi-Server-Batch-Operationen – erledigen Sie maschinenübergreifende Aufgaben mit einem Fingertipp
-- Vollständige Aufgabenprotokolle mit klaren Ausführungsergebnissen
+### Intelligenter KI-Assistent
+- Integriertes KI-Panel im Terminal mit Unterstützung für OpenAI, Claude, Gemini und weitere KI-Dienste
+- Befehlsausgaben mit einem Klick erklären, Fehler beheben, Skripte optimieren und Sicherheitsprüfungen durchführen
+- Verwaltung mehrerer Dialogsitzungen und benutzerdefinierte Vorlagen für System-Prompts
+- Intelligente Befehlsvorschläge zur Steigerung der betrieblichen Effizienz
 
-### Hintergrundaktivität
-- SSH/SFTP/Port-Weiterleitungs-Sitzungen laufen im Hintergrund weiter
-- Verbindungen bleiben aktiv, auch wenn Sie die App wechseln oder Ihren Bildschirm sperren
+### Automatisierungs-Task-Engine
+- Zeitgesteuerte Ausführung wiederkehrender Administrationsaufgaben, um Zeit und Aufwand zu sparen
+- Visueller Skript-Editor, für den keine Programmierkenntnisse erforderlich sind
+- Umfangreiche integrierte Vorlagen: Serverüberwachung, Protokollanalyse, Batch-Bereitstellungen
+- Stapelverarbeitung für mehrere Server, serverübergreifende Aufgaben mit nur einem Klick erledigen
 
-### iCloud-Synchronisierung über Geräte hinweg
-- Hosts, Port-Weiterleitungen und Befehlsfragmente synchronisieren sich in Echtzeit zwischen iPhone, iPad und Mac
-- Fügen Sie eine Konfiguration auf einem beliebigen Gerät hinzu und sie ist sofort auf allen anderen verfügbar
-- Stille Push-Benachrichtigungen halten Cloud-Änderungen automatisch synchronisiert
+### iOS-Hintergrundausführung + iCloud-Synchronisierung
+- SSH/SFTP/Portweiterleitungs-Sitzungen laufen im Hintergrund weiter, kein Verbindungsabbruch beim App-Wechsel
+- Host-Konfigurationen und Befehlsfragmente werden in Echtzeit zwischen iPhone, iPad und Mac synchronisiert
+- Cloud-Änderungen werden automatisch übertragen und sind auf jedem Gerät sofort verfügbar
 
 ---
 
-## 🔧 Kernfunktionen
+## Professionelle Funktionen
 
 ### SSH-Terminal
-- Authentifizierung per Passwort und privatem Schlüssel (RSA, ED25519, P256)
-- Verwalten Sie mehrere Server gleichzeitig mit Tab-Oberfläche
-- Vollständige Terminal-Emulation mit Farb- und Sonderzeichenunterstützung
-- Terminal-interne Suche mit Hervorhebung
+- Unterstützt RSA-, ED25519- und P256-Schlüsselauthentifizierung
+- Verwaltung mehrerer Tabs, vollständige Terminal-Emulation
+- Suchhervorhebung innerhalb des Terminals, intelligente KI-Unterstützung
+
+### SFTP-Dateimanagement
+- Zwei-Fenster-Browser, Datei-Upload und -Download bequem per Drag-and-Drop
+- Dateioperationen, Berechtigungsänderungen und präzise Anzeige des Übertragungsfortschritts
+- Vorschaufunktion für eine Vielzahl von Dateitypen
+
+### Portweiterleitung
+- Lokale und Remote-Portweiterleitung, SOCKS5-Proxy
+- Verschlüsselte Übertragung über SSH-Tunnel für den sicheren Zugriff auf Intranet-Dienste
 
 ### Befehlsfragmente
-- Speichern Sie häufig verwendete Befehle für die Ausführung per Fingertipp
-- Erstellen Sie Ihre persönliche Befehlsbibliothek – verabschieden Sie sich von wiederholter Eingabe
-- Variablenersetzung für flexible Anpassung an verschiedene Szenarien
-
-### SFTP-Dateiverwaltung
-- Dual-Panel-Dateibrowser mit Drag-and-Drop-Upload/-Download
-- Dateien umbenennen, löschen und Berechtigungen ändern
-- Echtzeit-Übertragungsfortschritt mit Abbruchunterstützung
-- Vorschau mehrerer Dateitypen
-
-### Port-Weiterleitung
-- Lokale/Remote-Port-Weiterleitung
-- SOCKS5-Dynamic-Proxy
-- SSH-Tunnel-Verschlüsselung
-- Sicherer Zugriff auf interne Netzwerkdienste
-
-### Schlüsselverwaltung
-- OpenSSH-kompatibel – unterstützt Ed25519, RSA, P256/EC
-- Sichere lokale Speicherung, wird nie hochgeladen
-- Schnelle Authentifizierung per Fingertipp
+- Häufig verwendete Befehle speichern und mit einem Klick blitzschnell ausführen
+- Unterstützung für Variablenersetzung zum Aufbau einer personalisierten Befehlsbibliothek
 
 ---
 
-## 🎯 Technische Highlights
+## Technische Sicherheit
 
-- **Sicher und Zuverlässig**: End-to-End-SSH-Verschlüsselung, private Schlüssel nur lokal gespeichert, keine Datenerfassung
-- **Global**: Unterstützt über 25 Sprachen
-- **Native Erfahrung**: Perfekt an die Apple-Designsprache angepasst, responsives Layout, Gestensteuerung
+- Sicher und zuverlässig: End-to-End-SSH-Verschlüsselung, private Schlüssel bleiben streng lokal, keinerlei Datenerfassung
+- Global: Vollständige Unterstützung für mehr als 25 Sprachen
+- Natives Erlebnis: Perfekt abgestimmt auf die Apple-Designsprache
 
 ---
 
-## 🙏 Besonderer Dank
+## Besonderer Dank
 
 Diese App basiert auf den folgenden großartigen Open-Source-Projekten:
 
@@ -75,7 +66,7 @@ Diese App basiert auf den folgenden großartigen Open-Source-Projekten:
 
 ---
 
-## 💎 Abonnementmodell
+## Abonnementmodell
 
 - **Kostenlose Version**: Vollständige Funktionserfahrung mit bis zu 5 Hosts
 - **Pro-Version**: Unbegrenzte Hosts mit flexiblen monatlichen oder jährlichen Plänen
@@ -83,20 +74,20 @@ Diese App basiert auf den folgenden großartigen Open-Source-Projekten:
 
 ---
 
-## 🚀 Herunterladen
+## Herunterladen
 
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/naviterm/id6747072398)
 
 ---
 
-## 💬 Treten Sie unserer Community bei
+## Treten Sie unserer Community bei
 
 - 📢 [Telegram-Kanal](https://t.me/khgk180_na) - Erhalten Sie die neuesten Updates, Feature-Releases und wichtige Ankündigungen
 - 💬 [Telegram-Diskussionsgruppe](https://t.me/kkkhjo_ut357) - Vernetzen Sie sich mit anderen Benutzern, teilen Sie Tipps und tauschen Sie Erfahrungen aus
 
 ---
 
-## 🎁 Anleitung zum Einlösen von Promo-Codes
+## Anleitung zum Einlösen von Promo-Codes
 
 Wir bieten gelegentlich kostenlose Abonnement-Promo-Codes an (1 Monat oder 1 Jahr). Wenn Sie einen Promo-Code erhalten haben:
 
@@ -112,7 +103,7 @@ Wir bieten gelegentlich kostenlose Abonnement-Promo-Codes an (1 Monat oder 1 Jah
 
 ---
 
-## 📜 Rechtliches
+## Rechtliches
 
 - [Nutzungsbedingungen](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/)
 - [Datenschutzrichtlinie](https://www.trivix.cn/NaviTerm_Privacy_Policy.html)
@@ -126,20 +117,17 @@ Wir bieten gelegentlich kostenlose Abonnement-Promo-Codes an (1 Monat oder 1 Jah
 
 ![App Screenshot](images/3.png)
 
-![App Screenshot](images/4.png)
-
-![App Screenshot](images/5.png)
-
-![App Screenshot](images/6.png)
-
-![App Screenshot](images/7.jpg)
-
-![App Screenshot](images/8.jpg)
-
-![App Screenshot](images/9.jpg)
-
-![App Screenshot](images/10.jpg)
-
-![App Screenshot](images/11.jpg)
-
-![App Screenshot](images/12.jpg)
+<table style="width: 100%;">
+<!-- 第一行 -->
+<tr>
+<td width="33.3%"><img src="images/4.jpg"></td>
+<td width="33.3%"><img src="images/5.jpg"></td>
+<td width="33.3%"><img src="images/6.jpg"></td>
+</tr>
+<!-- 第二行 -->
+<tr>
+<td width="33.3%"><img src="images/7.jpg"></td>
+<td width="33.3%"><img src="images/8.jpg"></td>
+<td width="33.3%"><img src="images/9.jpg"></td>
+</tr>
+</table>
