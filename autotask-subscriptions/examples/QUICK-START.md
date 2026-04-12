@@ -238,8 +238,8 @@ $done(result)
 
 ## 💬 Join Our Community
 
-- 📢 [Telegram Channel](https://t.me/khgk180_na) - Get the latest updates, feature releases, and important announcements
-- 💬 [Telegram Discussion Group](https://t.me/kkkhjo_ut357) - Connect with other users, share tips, and exchange experiences
+- 📢 [Telegram Channel](https://t.me/NavitermNews) - Get the latest updates, feature releases, and important announcements
+- 💬 [Telegram Discussion Group](https://t.me/NaviTermCommunity) - Connect with other users, share tips, and exchange experiences
 
 ---
 

@@ -18,8 +18,8 @@
 
 ## 💬 コミュニティに参加
 
-- 📢 [Telegramチャンネル](https://t.me/khgk180_na) - 最新のアップデート、機能リリース、重要なお知らせを入手
-- 💬 [Telegram討論グループ](https://t.me/kkkhjo_ut357) - 他のユーザーと交流し、ヒントを共有し、経験を交換
+- 📢 [Telegramチャンネル](https://t.me/NavitermNews) - 最新のアップデート、機能リリース、重要なお知らせを入手
+- 💬 [Telegram討論グループ](https://t.me/NaviTermCommunity) - 他のユーザーと交流し、ヒントを共有し、経験を交換
 
 ## 📋 利用可能なサブスクリプション
 

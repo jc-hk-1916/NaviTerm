@@ -18,8 +18,8 @@ Eine umfassende Sammlung von Automatisierungsskripten für Serverüberwachung, A
 
 ## 💬 Treten Sie unserer Community bei
 
-- 📢 [Telegram-Kanal](https://t.me/khgk180_na) - Erhalten Sie die neuesten Updates, Feature-Releases und wichtige Ankündigungen
-- 💬 [Telegram-Diskussionsgruppe](https://t.me/kkkhjo_ut357) - Vernetzen Sie sich mit anderen Benutzern, teilen Sie Tipps und tauschen Sie Erfahrungen aus
+- 📢 [Telegram-Kanal](https://t.me/NavitermNews) - Erhalten Sie die neuesten Updates, Feature-Releases und wichtige Ankündigungen
+- 💬 [Telegram-Diskussionsgruppe](https://t.me/NaviTermCommunity) - Vernetzen Sie sich mit anderen Benutzern, teilen Sie Tipps und tauschen Sie Erfahrungen aus
 
 ## 📋 Verfügbare Abonnements
 

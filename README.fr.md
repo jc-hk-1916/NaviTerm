@@ -82,8 +82,8 @@ Cette application est construite avec les projets open source suivants :
 
 ## Rejoignez Notre Communauté
 
-- 📢 [Canal Telegram](https://t.me/khgk180_na) - Recevez les dernières mises à jour, les sorties de fonctionnalités et les annonces importantes
-- 💬 [Groupe de Discussion Telegram](https://t.me/kkkhjo_ut357) - Échangez avec d'autres utilisateurs, partagez des astuces et des expériences
+- 📢 [Canal Telegram](https://t.me/NavitermNews) - Recevez les dernières mises à jour, les sorties de fonctionnalités et les annonces importantes
+- 💬 [Groupe de Discussion Telegram](https://t.me/NaviTermCommunity) - Échangez avec d'autres utilisateurs, partagez des astuces et des expériences
 
 ---
 

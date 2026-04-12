@@ -18,8 +18,8 @@ Una colección completa de scripts de automatización para monitoreo de servidor
 
 ## 💬 Únete a Nuestra Comunidad
 
-- 📢 [Canal de Telegram](https://t.me/khgk180_na) - Obtén las últimas actualizaciones, lanzamientos de funciones y anuncios importantes
-- 💬 [Grupo de Discusión de Telegram](https://t.me/kkkhjo_ut357) - Conéctate con otros usuarios, comparte consejos e intercambia experiencias
+- 📢 [Canal de Telegram](https://t.me/NavitermNews) - Obtén las últimas actualizaciones, lanzamientos de funciones y anuncios importantes
+- 💬 [Grupo de Discusión de Telegram](https://t.me/NaviTermCommunity) - Conéctate con otros usuarios, comparte consejos e intercambia experiencias
 
 ## 📋 Suscripciones Disponibles
 

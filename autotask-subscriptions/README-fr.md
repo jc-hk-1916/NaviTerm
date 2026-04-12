@@ -18,8 +18,8 @@ Une collection complète de scripts d'automatisation pour la surveillance des se
 
 ## 💬 Rejoignez Notre Communauté
 
-- 📢 [Canal Telegram](https://t.me/khgk180_na) - Recevez les dernières mises à jour, les sorties de fonctionnalités et les annonces importantes
-- 💬 [Groupe de Discussion Telegram](https://t.me/kkkhjo_ut357) - Connectez-vous avec d'autres utilisateurs, partagez des astuces et échangez des expériences
+- 📢 [Canal Telegram](https://t.me/NavitermNews) - Recevez les dernières mises à jour, les sorties de fonctionnalités et les annonces importantes
+- 💬 [Groupe de Discussion Telegram](https://t.me/NaviTermCommunity) - Connectez-vous avec d'autres utilisateurs, partagez des astuces et échangez des expériences
 
 ## 📋 Abonnements Disponibles
 
