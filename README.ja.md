@@ -113,21 +113,42 @@ AIアシスタントを統合した、プロフェッショナル向けのSSH運
 
 ![App Screenshot](images/1.png)
 
-![App Screenshot](images/2.png)
+<table style="width: 100%;">
+<!-- 第一行 -->
+<tr>
+<td width="50%"><img src="images/2.png"></td>
+<td width="50%"><img src="images/3.png"></td>
+</tr>
+<!-- 第二行 -->
+<tr>
+<td width="50%"><img src="images/4.png"></td>
+<td width="50%"><img src="images/5.png"></td>
+</tr>
+<!-- 第三行 -->
+<tr>
+<td width="50%"><img src="images/6.png"></td>
+<td width="50%"><img src="images/7.png"></td>
+</tr>
+</table>
 
-![App Screenshot](images/3.png)
 
 <table style="width: 100%;">
 <!-- 第一行 -->
 <tr>
-<td width="33.3%"><img src="images/4.jpg"></td>
-<td width="33.3%"><img src="images/5.jpg"></td>
-<td width="33.3%"><img src="images/6.jpg"></td>
+<td width="33.3%"><img src="images/ios1.png"></td>
+<td width="33.3%"><img src="images/ios2.png"></td>
+<td width="33.3%"><img src="images/ios3.png"></td>
 </tr>
 <!-- 第二行 -->
 <tr>
-<td width="33.3%"><img src="images/7.jpg"></td>
-<td width="33.3%"><img src="images/8.jpg"></td>
-<td width="33.3%"><img src="images/9.jpg"></td>
+<td width="33.3%"><img src="images/ios4.png"></td>
+<td width="33.3%"><img src="images/ios5.png"></td>
+<td width="33.3%"><img src="images/ios6.png"></td>
+</tr>
+<!-- 第三行 -->
+<tr>
+<td width="33.3%"><img src="images/ios7.png"></td>
+<td width="33.3%"><img src="images/ios8.png"></td>
+<td width="33.3%"><img src="images/ios9.png"></td>
 </tr>
 </table>
