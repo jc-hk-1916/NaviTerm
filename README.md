@@ -66,17 +66,25 @@ This app is built with the following amazing open-source projects:
 
 ---
 
-## Subscription Model
+## Pricing Model
 
 - **Free Version**: Full feature experience with up to 5 hosts
-- **Pro Version**: Unlimited hosts with flexible monthly or annual plans
-- **Pro subscribers enjoy offline usage support**
+- **Pro Version**: Unlimited hosts, available as a monthly subscription, annual subscription, or one-time lifetime purchase
+- **Pro users enjoy offline usage support**
 
 ---
 
 ## Download
 
+> Due to compliance requirements, NaviTerm is distributed as two separate apps on the App Store. Please choose the one matching your App Store region.
+
+**Global (Worldwide except Mainland China)**
+
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/naviterm/id6747072398)
+
+**Mainland China (中国大陆)**
+
+[![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/cn/app/naviterm-ssh-sftp-tunnels/id6767472751)
 
 ---
 

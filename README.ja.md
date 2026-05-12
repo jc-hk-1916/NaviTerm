@@ -66,17 +66,25 @@ AIアシスタントを統合した、プロフェッショナル向けのSSH運
 
 ---
 
-## サブスクリプションモデル
+## 料金プラン
 
 - **無料版**：最大5ホストで完全な機能体験
-- **Pro版**：柔軟な月額または年額プランで無制限のホスト
-- **Proサブスクライバーはオフライン使用サポートを享受**
+- **Pro版**：無制限のホスト。月額サブスクリプション、年額サブスクリプション、買い切り（永久利用）の3つのプランから選択可能
+- **Proユーザーはオフライン使用サポートを享受**
 
 ---
 
 ## ダウンロード
 
+> コンプライアンス要件のため、NaviTermはApp Storeで2つの個別のアプリとして配信されています。お使いのApp Storeの地域に合ったバージョンをお選びください。
+
+**グローバル版（中国本土以外の地域）**
+
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/naviterm/id6747072398)
+
+**中国本土版（中国大陆）**
+
+[![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/cn/app/naviterm-ssh-sftp-tunnels/id6767472751)
 
 ---
 

@@ -66,15 +66,23 @@
 
 ---
 
-## 订阅模式
+## 付费方式
 
 - **免费版**：完整功能体验，最多5个主机
-- **专业版**：无限主机连接，月度/年度可选
-- **订阅用户享受离线使用保障**
+- **专业版**：无限主机连接，提供月度订阅、年度订阅以及一次性买断（终身使用）三种方案
+- **专业版用户享受离线使用保障**
 
 ---
 
 ## 下载
+
+> 由于合规要求，NaviTerm 在 App Store 上以两个独立应用的形式分发，请根据您的 App Store 所在地区选择对应版本。
+
+**中国大陆**
+
+[![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/cn/app/naviterm-ssh-sftp-tunnels/id6767472751)
+
+**全球版（中国大陆以外地区）**
 
 [![Download on the App Store](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)](https://apps.apple.com/us/app/naviterm/id6747072398)
 
